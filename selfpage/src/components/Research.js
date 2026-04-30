@@ -10,10 +10,9 @@ const Research = () => {
             <div className="research-section">
                 <div className="research-grid">
                     <div className="research-card">
-                        <h3>AI图像处理研究</h3>
+                        <h3>AI 图像处理研究</h3>
                         <p>
-                            基于深度学习的图像去雾与增强算法研究，
-                            使用GAN网络实现雾天图像的实时清晰化处理。
+                            基于深度学习的图像去雾与增强算法研究，使用 GAN 网络实现雾天图像的实时清晰化处理。
                         </p>
                         <div className="research-tags">
                             <span className="research-tag">Computer Vision</span>
@@ -24,8 +23,7 @@ const Research = () => {
                     <div className="research-card">
                         <h3>网络安全工具开发</h3>
                         <p>
-                            参与CTF竞赛相关工具的开发与优化，
-                            研究漏洞检测与渗透测试的自动化方法。
+                            参与 CTF 竞赛相关工具的开发与优化，研究漏洞检测与渗透测试的自动化方法。
                         </p>
                         <div className="research-tags">
                             <span className="research-tag">Cybersecurity</span>
@@ -36,8 +34,7 @@ const Research = () => {
                     <div className="research-card">
                         <h3>机器学习应用</h3>
                         <p>
-                            探索机器学习算法在网络安全领域的应用，
-                            包括异常检测、入侵识别等场景的模型构建。
+                            探索机器学习算法在网络安全领域的应用，包括异常检测、入侵识别等场景的模型构建。
                         </p>
                         <div className="research-tags">
                             <span className="research-tag">ML</span>

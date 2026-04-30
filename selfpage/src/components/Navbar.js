@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import logo from "../img/BZ_logo.png"
+import logo from '../img/BZ_logo.png';
 
 const Navbar = () => {
     const [isActive, setIsActive] = useState(false);
 
     const toggleMenu = () => {
-        setIsActive(!isActive);
+        setIsActive((current) => !current);
     };
 
     const handleMenuClick = (event) => {
@@ -17,6 +17,8 @@ const Navbar = () => {
     useEffect(() => {
         const handleScroll = () => {
             const navbar = document.querySelector('.navbar');
+            if (!navbar) return;
+
             if (window.pageYOffset > 0) {
                 navbar.classList.add('scrolled');
             } else {
@@ -27,14 +29,15 @@ const Navbar = () => {
         const handleClickOutside = (event) => {
             const menu = document.querySelector('.nav-menu');
             const menuIcon = document.querySelector('.mobile-menu-icon');
-            if (!menu.contains(event.target) && !menuIcon.contains(event.target)) {
+            if (menu && menuIcon && !menu.contains(event.target) && !menuIcon.contains(event.target)) {
                 setIsActive(false);
             }
         };
 
         document.addEventListener('click', handleClickOutside);
         window.addEventListener('scroll', handleScroll);
-        
+        handleScroll();
+
         return () => {
             document.removeEventListener('click', handleClickOutside);
             window.removeEventListener('scroll', handleScroll);
@@ -45,13 +48,15 @@ const Navbar = () => {
         <header className={`navbar ${isActive ? 'scrolled' : ''}`}>
             <nav>
                 <div className="nav-container">
-                <a href="#" className="logo">
-                        <img src={logo} alt="Logo" />
+                    <a href="#gateway" className="logo">
+                        <img src={logo} alt="Bruce Zhao logo" />
                     </a>
-                    <div className="mobile-menu-icon" onClick={toggleMenu}>
-                        <span>☰</span>
-                    </div>
+                    <button className="mobile-menu-icon" onClick={toggleMenu} aria-label="Toggle navigation">
+                        <span>{isActive ? '×' : '☰'}</span>
+                    </button>
                     <ul className={`nav-menu ${isActive ? 'active' : ''}`} onClick={handleMenuClick}>
+                        <li><a href="#gateway">特别入口</a></li>
+                        <li><a href="#profile">正常主页</a></li>
                         <li><a href="#about">个人简介</a></li>
                         <li><a href="#education">学习经历</a></li>
                         <li><a href="#research">科研项目</a></li>
