@@ -1,0 +1,99 @@
+import React, { useEffect, useState } from 'react';
+
+const Hero = ({ onNavigate }) => {
+  const [visible, setVisible] = useState(false);
+
+  useEffect(() => {
+    setTimeout(() => setVisible(true), 100);
+  }, []);
+
+  return (
+    <div className="min-h-screen flex flex-col items-center justify-center relative overflow-hidden">
+      {/* Background Grid */}
+      <div className="absolute inset-0 opacity-20">
+        <div className="absolute inset-0 bg-[linear-gradient(rgba(0,212,255,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(0,212,255,0.03)_1px,transparent_1px)] bg-[size:60px_60px]" />
+        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-[#060810]" />
+      </div>
+
+      {/* Floating Particles */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        {[...Array(20)].map((_, i) => (
+          <div
+            key={i}
+            className="absolute w-1 h-1 bg-[#00d4ff] rounded-full animate-float"
+            style={{
+              left: `${Math.random() * 100}%`,
+              top: `${Math.random() * 100}%`,
+              animationDelay: `${Math.random() * 5}s`,
+              animationDuration: `${3 + Math.random() * 4}s`,
+              opacity: 0.3 + Math.random() * 0.4,
+            }}
+          />
+        ))}
+      </div>
+
+      {/* Main Content */}
+      <div className={`relative z-10 text-center transition-all duration-1000 ${visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
+        <div className="mb-4 font-['Orbitron'] text-[#6b7f94] text-xs tracking-[0.3em] animate-pulse">
+          SYSTEM INITIALIZED // WELCOME TO
+        </div>
+
+        <h1 className="font-['Orbitron'] text-6xl md:text-8xl font-bold tracking-wider mb-6">
+          <span className="bg-gradient-to-r from-[#00d4ff] via-[#7b61ff] to-[#00d4ff] bg-clip-text text-transparent animate-gradient">
+            BZ's Lab
+          </span>
+        </h1>
+
+        <div className="flex items-center justify-center gap-4 mb-8">
+          <span className="px-3 py-1 rounded-full text-xs font-['JetBrains_Mono'] bg-[#00d4ff]/10 text-[#00d4ff] border border-[#00d4ff]/30">
+            AI
+          </span>
+          <span className="text-[#6b7f94]">/</span>
+          <span className="px-3 py-1 rounded-full text-xs font-['JetBrains_Mono'] bg-[#7b61ff]/10 text-[#7b61ff] border border-[#7b61ff]/30">
+            Computer Vision
+          </span>
+          <span className="text-[#6b7f94]">/</span>
+          <span className="px-3 py-1 rounded-full text-xs font-['JetBrains_Mono'] bg-[#00ff88]/10 text-[#00ff88] border border-[#00ff88]/30">
+            Software Engineering
+          </span>
+        </div>
+
+        <p className="text-[#6b7f94] text-lg max-w-xl mx-auto leading-relaxed font-['JetBrains_Mono']">
+          探索低光视觉感知、多模态分析与智能系统开发
+        </p>
+
+        <div className="mt-12 flex items-center justify-center gap-6 text-xs font-['JetBrains_Mono'] text-[#6b7f94]">
+          <span className="flex items-center gap-2">
+            <span className="w-2 h-2 rounded-full bg-[#00ff88]"></span>
+            5 PROJECTS
+          </span>
+          <span className="flex items-center gap-2">
+            <span className="w-2 h-2 rounded-full bg-[#00d4ff]"></span>
+            2 PAPERS
+          </span>
+          <span className="flex items-center gap-2">
+            <span className="w-2 h-2 rounded-full bg-[#7b61ff]"></span>
+            UESTC
+          </span>
+        </div>
+
+        <div className="mt-16 animate-bounce">
+          <button
+            onClick={() => onNavigate('starmap')}
+            className="inline-flex flex-col items-center gap-2 text-[#6b7f94] text-xs font-['JetBrains_Mono'] hover:text-[#00d4ff] transition-colors cursor-pointer"
+          >
+            <span>SCROLL TO EXPLORE</span>
+            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
+            </svg>
+          </button>
+        </div>
+      </div>
+
+      {/* Scan Line Effect */}
+      <div className="absolute left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-[#00d4ff]/30 to-transparent animate-scan" />
+    </div>
+  );
+};
+
+export default Hero;

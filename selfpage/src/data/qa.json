@@ -1,0 +1,34 @@
+{
+  "qa": [
+    {
+      "id": "hobby",
+      "keywords": ["爱好", "兴趣", "hobby", "喜欢", "空闲"],
+      "question": "你平时有什么爱好？",
+      "answer": "我喜欢探索新工具、做 CTF 比赛、阅读论文，偶尔也折腾一些有趣的小项目来保持手感。对黑客文化和开源社区比较感兴趣。"
+    },
+    {
+      "id": "research",
+      "keywords": ["研究", "方向", "研究的方向", "做什么", "领域"],
+      "question": "你的研究方向是什么？",
+      "answer": "我的研究方向是低光视觉感知、多模态分析和智能系统开发。具体来说，包括低光环境下的目标检测、多模态数据融合、以及端到端的智能感知系统。"
+    },
+    {
+      "id": "papers",
+      "keywords": ["论文", "发表", " publications", "paper"],
+      "question": "你发表过哪些论文？",
+      "answer": "目前已发表 2 篇论文：CCTM-Fusion 相关工作发表在 XXX 会议，关于跨模态 Transformer 融合；UAVP 相关研究投稿中，主要涉及无人机低光视觉感知。"
+    },
+    {
+      "id": "education",
+      "keywords": ["学校", "读书", "学历", "大学", "在哪", "教育"],
+      "question": "你在哪里读书？",
+      "answer": "我在电子科技大学（University of Electronic Science and Technology of China）读软件工程专业，目前大四，已获得保研资格。"
+    },
+    {
+      "id": "ai-start",
+      "keywords": ["开始", "怎么学", "入门", "AI", "接触", "为什么"],
+      "question": "你是怎么开始接触 AI 的？",
+      "answer": "大三时进了计算机视觉实验室，参与 UAVP 无人机项目，从那时候开始系统学习深度学习和计算机视觉。后来一发不可收拾，开始做多模态融合的研究。"
+    }
+  ]
+}

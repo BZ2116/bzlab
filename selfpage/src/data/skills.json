@@ -1,0 +1,24 @@
+{
+  "skills": [
+    {
+      "category": "编程语言",
+      "items": ["Python", "JavaScript", "TypeScript", "C++", "Go"]
+    },
+    {
+      "category": "AI / ML",
+      "items": ["PyTorch", "TensorFlow", "OpenCV", "MediaPipe", "Transformers", "LangChain"]
+    },
+    {
+      "category": "前端",
+      "items": ["React", "Vue.js", "TailwindCSS", "Framer Motion", "Vite"]
+    },
+    {
+      "category": "后端 / 基础设施",
+      "items": ["Node.js", "FastAPI", "MongoDB", "Redis", "Docker", "GitHub Actions"]
+    },
+    {
+      "category": "研究领域",
+      "items": ["计算机视觉", "目标检测", "多模态学习", "低光视觉", "姿态识别"]
+    }
+  ]
+}

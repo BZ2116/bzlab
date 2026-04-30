@@ -1,0 +1,59 @@
+{
+  "projects": [
+    {
+      "id": "uavp",
+      "name": "UAVP",
+      "fullName": "Unmanned Aerial Vision Platform",
+      "type": "research",
+      "description": "无人机视觉感知平台，专注低光条件下的目标检测与跟踪。参与国家级大学生创新创业项目，核心算法基于 YOLO 和改进的注意力机制。",
+      "tech": ["Python", "PyTorch", "OpenCV", "YOLO", "TensorRT"],
+      "github": "https://github.com/bz2116/uavp",
+      "status": "active",
+      "size": 1.2
+    },
+    {
+      "id": "cctm-fusion",
+      "name": "CCTM-Fusion",
+      "fullName": "Cross-Modal Transformer Fusion",
+      "type": "research",
+      "description": "多模态融合算法研究，结合图像与文本特征进行跨模态理解。提出基于 Transformer 的融合模块，在多个基准数据集上取得领先性能。",
+      "tech": ["PyTorch", "Transformers", "CLIP", "Python"],
+      "github": "https://github.com/bz2116/cctm-fusion",
+      "status": "published",
+      "size": 1.0
+    },
+    {
+      "id": "note-forge",
+      "name": "NoteForge",
+      "fullName": "AI Learning Materials Organizer",
+      "type": "application",
+      "description": "面向个人学习与科研场景的 AI 学习资料整理 Agent。系统支持上传 PDF、TXT、Markdown、DOCX 文件，自动生成科研阅读卡片、项目关联分析、论文写作素材和后续任务清单。",
+      "tech": ["React", "FastAPI", "LangChain", "ChromaDB", "Python"],
+      "github": "https://github.com/bz2116/note-forge",
+      "status": "active",
+      "size": 1.1
+    },
+    {
+      "id": "book-exchange",
+      "name": "校园二手书",
+      "fullName": "Campus Book Exchange Platform",
+      "type": "application",
+      "description": "校园二手书交易平台，支持书籍发布、搜索、预约和线下交易。集成智能推荐算法，根据用户偏好推荐可能感兴趣的书籍。",
+      "tech": ["Vue.js", "Node.js", "MongoDB", "Redis"],
+      "github": "https://github.com/bz2116/book-exchange",
+      "status": "completed",
+      "size": 0.9
+    },
+    {
+      "id": "pose-detection",
+      "name": "姿态检测",
+      "fullName": "Human Pose Detection System",
+      "type": "research",
+      "description": "基于深度学习的人体姿态识别系统，可实时检测 17 个关键点。支持视频流分析和图片检测，适用于运动分析和人机交互场景。",
+      "tech": ["Python", "OpenCV", "MediaPipe", "TensorFlow"],
+      "github": "https://github.com/bz2116/pose-detection",
+      "status": "completed",
+      "size": 0.8
+    }
+  ]
+}
