@@ -2,7 +2,7 @@
   "name": "selfpage",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://bz2116.github.io/selfpage",
+  "homepage": "",
   "type": "module",
   "dependencies": {
     "echarts": "^5.5.0",
@@ -12,7 +12,7 @@
   },
   "scripts": {
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d build",
+    "deploy": "gh-pages -d dist",
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview"

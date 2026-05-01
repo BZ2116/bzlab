@@ -22,9 +22,7 @@ const Navbar = ({ activeModule, onModuleChange }) => {
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 h-14 flex items-center justify-between px-6 bg-[#060810]/90 backdrop-blur-md border-b border-white/[0.08]">
       <div className="flex items-center gap-3">
-        <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-[#00d4ff] to-[#7b61ff] flex items-center justify-center font-bold text-[#060810] text-sm">
-          ZL
-        </div>
+        <img src="./BZ_logo.png" alt="BZ" className="w-8 h-8 rounded-lg" />
         <span className="font-['Orbitron'] text-[#00d4ff] text-sm tracking-wider">BZ's Lab</span>
       </div>
 

@@ -6,7 +6,7 @@
     "enabled": true
   },
   "assets": {
-    "directory": "selfpage"
+    "directory": "selfpage/dist"
   },
   "compatibility_flags": [
     "nodejs_compat"

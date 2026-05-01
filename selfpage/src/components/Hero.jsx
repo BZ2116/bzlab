@@ -1,14 +1,46 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useCallback, useRef } from 'react';
 
 const Hero = ({ onNavigate }) => {
   const [visible, setVisible] = useState(false);
+  const [tilt, setTilt] = useState({ x: 0, y: 0 });
+  const [particles, setParticles] = useState([]);
+  const particleIdRef = useRef(0);
 
   useEffect(() => {
     setTimeout(() => setVisible(true), 100);
   }, []);
 
+  const handleMouseMove = useCallback((e) => {
+    const rect = e.currentTarget.getBoundingClientRect();
+    const centerX = rect.left + rect.width / 2;
+    const centerY = rect.top + rect.height / 2;
+    const rotateY = ((e.clientX - centerX) / (rect.width / 2)) * 5;
+    const rotateX = -((e.clientY - centerY) / (rect.height / 2)) * 5;
+    setTilt({ x: rotateX, y: rotateY });
+
+    // Spawn a particle
+    const id = particleIdRef.current++;
+    const particle = {
+      id,
+      x: e.clientX - rect.left,
+      y: e.clientY - rect.top,
+    };
+    setParticles((prev) => [...prev.slice(-30), particle]);
+    setTimeout(() => {
+      setParticles((prev) => prev.filter((p) => p.id !== id));
+    }, 800);
+  }, []);
+
+  const handleMouseLeave = useCallback(() => {
+    setTilt({ x: 0, y: 0 });
+  }, []);
+
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center relative overflow-hidden">
+    <div
+      className="h-screen flex flex-col items-center justify-center relative overflow-hidden"
+      onMouseMove={handleMouseMove}
+      onMouseLeave={handleMouseLeave}
+    >
       {/* Background Grid */}
       <div className="absolute inset-0 opacity-20">
         <div className="absolute inset-0 bg-[linear-gradient(rgba(0,212,255,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(0,212,255,0.03)_1px,transparent_1px)] bg-[size:60px_60px]" />
@@ -32,8 +64,33 @@ const Hero = ({ onNavigate }) => {
         ))}
       </div>
 
+      {/* Mouse-Following Particles */}
+      <div className="absolute inset-0 pointer-events-none z-20">
+        {particles.map((p) => (
+          <div
+            key={p.id}
+            className="absolute rounded-full bg-[#00d4ff]"
+            style={{
+              left: p.x,
+              top: p.y,
+              width: 4,
+              height: 4,
+              transform: 'translate(-50%, -50%)',
+              boxShadow: '0 0 6px #00d4ff, 0 0 12px rgba(0,212,255,0.4)',
+              animation: 'particleFade 0.8s ease-out forwards',
+            }}
+          />
+        ))}
+      </div>
+
       {/* Main Content */}
-      <div className={`relative z-10 text-center transition-all duration-1000 ${visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
+      <div
+        className={`relative z-10 text-center transition-all duration-1000 ${visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}
+        style={{
+          transform: `perspective(1000px) rotateX(${tilt.x}deg) rotateY(${tilt.y}deg)`,
+          transition: 'transform 0.15s ease-out',
+        }}
+      >
         <div className="mb-4 font-['Orbitron'] text-[#6b7f94] text-xs tracking-[0.3em] animate-pulse">
           SYSTEM INITIALIZED // WELCOME TO
         </div>
@@ -77,13 +134,13 @@ const Hero = ({ onNavigate }) => {
           </span>
         </div>
 
-        <div className="mt-16 animate-bounce">
+        <div className="mt-16">
           <button
             onClick={() => onNavigate('starmap')}
             className="inline-flex flex-col items-center gap-2 text-[#6b7f94] text-xs font-['JetBrains_Mono'] hover:text-[#00d4ff] transition-colors cursor-pointer"
           >
-            <span>SCROLL TO EXPLORE</span>
-            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <span className="animate-bounce inline-block">CLICK TO EXPLORE</span>
+            <svg className="w-5 h-5 animate-bounce" style={{animationDelay: '0.15s'}} fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
             </svg>
           </button>

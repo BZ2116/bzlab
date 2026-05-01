@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useCallback } from 'react';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import StarMap from './components/StarMap';
@@ -93,10 +93,10 @@ const App = () => {
   const [selectedProject, setSelectedProject] = useState(null);
   const [showProjectDetail, setShowProjectDetail] = useState(false);
 
-  const handleProjectSelect = (project) => {
+  const handleProjectSelect = useCallback((project) => {
     setSelectedProject(project);
     setShowProjectDetail(true);
-  };
+  }, []);
 
   const handleProjectOpen = (project) => {
     setSelectedProject(project);

@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import * as echarts from 'echarts';
 
-const StarMap = ({ projects, onProjectSelect, selectedProject }) => {
+const StarMap = ({ projects, onProjectSelect }) => {
   const chartRef = useRef(null);
   const containerRef = useRef(null);
   const [hoveredNode, setHoveredNode] = useState(null);
@@ -10,21 +10,12 @@ const StarMap = ({ projects, onProjectSelect, selectedProject }) => {
     if (!chartRef.current || !containerRef.current) return;
 
     const chart = echarts.init(chartRef.current);
-    let resizeObserver;
+    const container = containerRef.current;
 
-    const initChart = () => {
-      const container = containerRef.current;
-      if (!container) return;
-
-      const width = container.clientWidth;
-      const height = container.clientHeight;
-
-      if (width === 0 || height === 0) return;
-
+    const buildOption = () => {
       const nodes = projects.map((p) => ({
         name: p.name,
         id: p.id,
-        value: [Math.random() * 100, Math.random() * 70],
         symbolSize: 40 + p.size * 20,
         itemStyle: {
           color: p.type === 'research' ? '#00d4ff' : '#7b61ff',
@@ -55,18 +46,23 @@ const StarMap = ({ projects, onProjectSelect, selectedProject }) => {
         });
       }
 
-      const option = {
+      return {
         backgroundColor: 'transparent',
-        grid: { show: false },
-        xAxis: { show: false, type: 'value', min: 0, max: 100 },
-        yAxis: { show: false, type: 'value', min: 0, max: 80 },
         series: [
           {
             type: 'graph',
-            layout: 'none',
+            layout: 'force',
             data: nodes,
             links: edges,
             roam: true,
+            draggable: true,
+            force: {
+              repulsion: 300,
+              gravity: 0.1,
+              edgeLength: [100, 250],
+              friction: 0.6,
+              layoutAnimation: true,
+            },
             emphasis: {
               focus: 'adjacency',
               itemStyle: {
@@ -82,16 +78,14 @@ const StarMap = ({ projects, onProjectSelect, selectedProject }) => {
           },
         ],
       };
-
-      chart.setOption(option);
     };
 
-    initChart();
+    chart.setOption(buildOption());
 
-    resizeObserver = new ResizeObserver(() => {
+    const resizeObserver = new ResizeObserver(() => {
       chart.resize();
     });
-    resizeObserver.observe(containerRef.current);
+    resizeObserver.observe(container);
 
     chart.on('click', (params) => {
       const project = projects.find((p) => p.name === params.name);
@@ -107,7 +101,7 @@ const StarMap = ({ projects, onProjectSelect, selectedProject }) => {
     });
 
     return () => {
-      if (resizeObserver) resizeObserver.disconnect();
+      resizeObserver.disconnect();
       chart.dispose();
     };
   }, [projects, onProjectSelect]);
