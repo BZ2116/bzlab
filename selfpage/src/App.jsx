@@ -107,12 +107,12 @@ const App = () => {
     <div className="min-h-screen bg-[#060810] text-[#e8f0f8]">
       <Navbar activeModule={activeModule} onModuleChange={setActiveModule} />
 
-      <main className="pt-14">
+      <main className="h-screen overflow-hidden">
         {activeModule === 'hero' && <Hero onNavigate={setActiveModule} />}
 
         {activeModule === 'starmap' && (
-          <div className="min-h-[calc(100vh-8rem)] p-6">
-            <div className="h-[calc(100vh-12rem)] bg-[#0d1520]/50 rounded-xl border border-white/[0.08] overflow-hidden">
+          <div className="h-full p-6">
+            <div className="h-full bg-[#0d1520]/50 rounded-xl border border-white/[0.08] overflow-hidden">
               <StarMap
                 projects={projectsData.projects}
                 onProjectSelect={handleProjectSelect}
@@ -123,8 +123,8 @@ const App = () => {
         )}
 
         {activeModule === 'terminal' && (
-          <div className="min-h-[calc(100vh-8rem)] p-6">
-            <div className="h-[calc(100vh-12rem)]">
+          <div className="h-full p-6">
+            <div className="h-full">
               <Terminal
                 projects={projectsData.projects}
                 skills={skillsData.skills}
@@ -135,8 +135,8 @@ const App = () => {
         )}
 
         {activeModule === 'qa' && (
-          <div className="min-h-[calc(100vh-8rem)] p-6">
-            <div className="h-[calc(100vh-12rem)] bg-[#0d1520]/50 rounded-xl border border-white/[0.08] p-6">
+          <div className="h-full p-6">
+            <div className="h-full bg-[#0d1520]/50 rounded-xl border border-white/[0.08] p-6">
               <div className="mb-4 flex items-center gap-3">
                 <span className="text-2xl">🤖</span>
                 <div>

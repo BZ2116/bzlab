@@ -14,8 +14,8 @@ const Hero = ({ onNavigate }) => {
     const rect = e.currentTarget.getBoundingClientRect();
     const centerX = rect.left + rect.width / 2;
     const centerY = rect.top + rect.height / 2;
-    const rotateY = ((e.clientX - centerX) / (rect.width / 2)) * 5;
-    const rotateX = -((e.clientY - centerY) / (rect.height / 2)) * 5;
+    const rotateY = ((e.clientX - centerX) / (rect.width / 2)) * 10;
+    const rotateX = -((e.clientY - centerY) / (rect.height / 2)) * 10;
     setTilt({ x: rotateX, y: rotateY });
 
     // Spawn a particle
@@ -37,7 +37,7 @@ const Hero = ({ onNavigate }) => {
 
   return (
     <div
-      className="h-screen flex flex-col items-center justify-center relative overflow-hidden"
+      className="h-full flex flex-col items-center justify-center relative overflow-hidden select-none"
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
     >
