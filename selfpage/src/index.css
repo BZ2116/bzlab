@@ -113,6 +113,11 @@ body {
   }
 }
 
+@keyframes twinkle {
+  0%, 100% { opacity: 0.1; }
+  50% { opacity: 0.6; }
+}
+
 @keyframes particleFade {
   0% {
     transform: translate(-50%, -50%) scale(1);

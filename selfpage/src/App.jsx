@@ -106,7 +106,7 @@ const App = () => {
     <div className="min-h-screen bg-[#060810] text-[#e8f0f8]">
       <Navbar activeModule={activeModule} onModuleChange={setActiveModule} />
 
-      <main className="h-screen overflow-hidden">
+      <main className="h-[calc(100vh-3.5rem)] mt-14 overflow-hidden">
         {activeModule === 'hero' && <Hero onNavigate={setActiveModule} />}
 
         {activeModule === 'starmap' && (
