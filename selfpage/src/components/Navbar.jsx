@@ -15,8 +15,7 @@ const Navbar = ({ activeModule, onModuleChange }) => {
   const modules = [
     { id: 'hero', label: 'HOME' },
     { id: 'starmap', label: 'STAR MAP' },
-    { id: 'terminal', label: 'TERMINAL' },
-    { id: 'qa', label: 'Q&A' },
+    { id: 'ai', label: 'AI' },
   ];
 
   return (

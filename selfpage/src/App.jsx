@@ -2,8 +2,7 @@ import React, { useState, useCallback } from 'react';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import StarMap from './components/StarMap';
-import Terminal from './components/Terminal';
-import QAAssistant from './components/QAAssistant';
+import AIChat from './components/AIChat';
 import StatusBar from './components/StatusBar';
 import projectsData from './data/projects.json';
 import skillsData from './data/skills.json';
@@ -122,30 +121,14 @@ const App = () => {
           </div>
         )}
 
-        {activeModule === 'terminal' && (
+        {activeModule === 'ai' && (
           <div className="h-full p-6">
-            <div className="h-full">
-              <Terminal
-                projects={projectsData.projects}
-                skills={skillsData.skills}
-                onProjectOpen={handleProjectOpen}
-              />
-            </div>
-          </div>
-        )}
-
-        {activeModule === 'qa' && (
-          <div className="h-full p-6">
-            <div className="h-full bg-[#0d1520]/50 rounded-xl border border-white/[0.08] p-6">
-              <div className="mb-4 flex items-center gap-3">
-                <span className="text-2xl">🤖</span>
-                <div>
-                  <h2 className="font-['Orbitron'] text-lg text-[#e8f0f8]">BZ'sLab Q&A</h2>
-                  <p className="text-xs text-[#6b7f94]">基于本地知识的智能问答</p>
-                </div>
-              </div>
-              <QAAssistant qaData={qaData.qa} />
-            </div>
+            <AIChat
+              projects={projectsData.projects}
+              skills={skillsData.skills}
+              qaData={qaData.qa}
+              onProjectOpen={handleProjectOpen}
+            />
           </div>
         )}
       </main>
