@@ -103,7 +103,7 @@ const App = () => {
   };
 
   return (
-    <div className="min-h-screen bg-[#060810] text-[#e8f0f8]">
+    <div className="h-screen overflow-hidden bg-[#060810] text-[#e8f0f8]">
       <Navbar activeModule={activeModule} onModuleChange={setActiveModule} />
 
       <main className="h-[calc(100dvh-3.5rem)] mt-14 overflow-hidden">
