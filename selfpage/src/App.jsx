@@ -3,6 +3,7 @@ import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import StarMap from './components/StarMap';
 import AIChat from './components/AIChat';
+import FreshPage from './components/FreshPage';
 import StatusBar from './components/StatusBar';
 import projectsData from './data/projects.json';
 import skillsData from './data/skills.json';
@@ -101,6 +102,14 @@ const App = () => {
     setSelectedProject(project);
     setShowProjectDetail(true);
   };
+
+  if (activeModule === 'fresh') {
+    return (
+      <div className="h-screen overflow-hidden">
+        <FreshPage onSwitchBack={() => setActiveModule('hero')} />
+      </div>
+    );
+  }
 
   return (
     <div className="h-screen overflow-hidden bg-[#060810] text-[#e8f0f8]">
