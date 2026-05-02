@@ -57,7 +57,7 @@ const AIChat = ({ projects, skills, qaData, onProjectOpen }) => {
       ].join('\n');
     },
     whoami: () => {
-      return 'Bruce Zhao / 赵耀\n即将读研的网安大四学生 @ 电子科技大学\n研究方向：低光视觉感知、多模态分析、智能系统';
+      return 'Bruce Zhao / 赵耀\n重庆邮电大学 2026 届本科毕业生\n即将前往中国科学技术大学攻读硕士（网络安全方向）\n本科方向：AI & Computer Vision';
     },
     projects: () => {
       const lines = projects.map((p, i) => {
@@ -71,7 +71,7 @@ const AIChat = ({ projects, skills, qaData, onProjectOpen }) => {
       return skills.map((cat) => `[${cat.category}]\n  ${cat.items.join(' · ')}`).join('\n\n');
     },
     contact: () => {
-      return '邮箱: bzy1621@outlook.com\nGitHub: github.com/bz2116\n微信: BZ2116___';
+      return '邮箱: bzy1621@outlook.com\nGitHub: github.com/bz2116';
     },
   };
 

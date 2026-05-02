@@ -23,10 +23,10 @@ const FreshPage = ({ onSwitchBack }) => {
           Bruce Zhao
         </h1>
         <p className="text-[#64748b] mt-2 text-sm sm:text-base">
-          电子科技大学 · 软件工程 · AI & Computer Vision
+          重庆邮电大学 · 软件工程 · 即将前往中国科学技术大学
         </p>
         <p className="text-[#94a3b8] mt-1 text-xs">
-          探索低光视觉感知、多模态分析与智能系统开发
+          本科 AI & CV → 研究生网络安全
         </p>
 
         {/* Tab bar */}
@@ -76,25 +76,25 @@ const AboutTab = () => (
   <div className="space-y-8 animate-fadeIn">
     <Section title="自我介绍">
       <p className="leading-relaxed">
-        你好！我是赵耀（Bruce Zhao），电子科技大学软件工程专业大四学生，已获得保研资格。
-        我的研究方向是<b>低光视觉感知</b>、<b>多模态分析</b>与<b>智能系统开发</b>。
+        你好！我是赵耀（Bruce Zhao），重庆邮电大学软件工程专业 2026 届毕业生，
+        即将前往中国科学技术大学攻读硕士研究生。
       </p>
       <p className="leading-relaxed mt-3">
-        热爱探索新技术、参加 CTF 比赛、阅读前沿论文。对黑客文化和开源社区有浓厚兴趣，
-        喜欢通过实践项目保持技术敏感度。
+        本科阶段主要做 <b>AI</b> 和 <b>计算机视觉</b> 方向的研究，研究生阶段将转向 <b>网络安全</b>。
+        热爱探索新技术、参加 CTF 比赛、阅读前沿论文。
       </p>
     </Section>
 
     <Section title="教育经历">
       <Timeline items={[
-        { year: '2022 — 2026', title: '电子科技大学', desc: '软件工程 · 本科' },
-        { year: '2026 — ', title: '电子科技大学', desc: '保研 · 待入学' },
+        { year: '2022 — 2026', title: '重庆邮电大学', desc: '软件工程 · 本科' },
+        { year: '2026 — ', title: '中国科学技术大学', desc: '硕士研究生 · 网络安全' },
       ]} />
     </Section>
 
     <Section title="研究方向">
       <div className="flex flex-wrap gap-2">
-        {['低光视觉感知', '目标检测', '多模态融合', '姿态识别', '智能系统'].map((tag) => (
+        {['低光视觉感知', '目标检测', '多模态分析', '网络安全', 'CTF'].map((tag) => (
           <span key={tag} className="px-3 py-1.5 rounded-full text-sm bg-[#f0fdfa] text-[#0d9488] border border-[#99f6e4]">
             {tag}
           </span>
@@ -187,15 +187,6 @@ const ContactTab = () => {
       label: 'GitHub',
       value: 'github.com/bz2116',
       href: 'https://github.com/bz2116',
-    },
-    {
-      icon: (
-        <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
-        </svg>
-      ),
-      label: '微信',
-      value: 'BZ2116___',
     },
   ];
 

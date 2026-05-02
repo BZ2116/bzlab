@@ -116,7 +116,7 @@ const Hero = ({ onNavigate }) => {
         </div>
 
         <p className="text-[#6b7f94] text-sm sm:text-lg max-w-xl mx-auto leading-relaxed font-['JetBrains_Mono']">
-          探索低光视觉感知、多模态分析与智能系统开发
+          AI & CV · 即将前往 USTC 攻读网络安全方向
         </p>
 
         <div className="mt-8 sm:mt-12 flex items-center justify-center gap-3 sm:gap-6 text-[10px] sm:text-xs font-['JetBrains_Mono'] text-[#6b7f94]">
@@ -126,11 +126,11 @@ const Hero = ({ onNavigate }) => {
           </span>
           <span className="flex items-center gap-2">
             <span className="w-2 h-2 rounded-full bg-[#00d4ff]"></span>
-            2 PAPERS
+            1 PAPER
           </span>
           <span className="flex items-center gap-2">
             <span className="w-2 h-2 rounded-full bg-[#7b61ff]"></span>
-            UESTC
+            CQUPT → USTC
           </span>
         </div>
 
