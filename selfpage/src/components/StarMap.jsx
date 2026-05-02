@@ -21,6 +21,7 @@ const StarMap = ({ projects, onProjectSelect }) => {
 
   // Camera
   const cameraRef = useRef({ x: 0, y: 0, zoom: 1 });
+  const cameraInitRef = useRef(false);
 
   // Mouse / touch
   const mouseRef = useRef({ x: 0, y: 0, canvasX: 0, canvasY: 0 });
@@ -32,9 +33,14 @@ const StarMap = ({ projects, onProjectSelect }) => {
   const [hoverPos, setHoverPos] = useState({ x: 0, y: 0 });
   const hoveredRef = useRef(null);
 
+  // Mobile detection
+  const isMobile = typeof window !== 'undefined' && window.innerWidth < 640;
+  const starCount = isMobile ? 120 : 250;
+  const particleCount = isMobile ? 2 : 3; // per connection
+
   // Generate background data once
   const stars = useMemo(() =>
-    [...Array(250)].map(() => ({
+    [...Array(starCount)].map(() => ({
       x: (Math.random() - 0.5) * 2000,
       y: (Math.random() - 0.5) * 2000,
       r: 0.3 + Math.random() * 1.5,
@@ -54,7 +60,7 @@ const StarMap = ({ projects, onProjectSelect }) => {
   const flowParticles = useMemo(() => {
     const particles = [];
     for (let i = 0; i < CONNECTIONS.length; i++) {
-      for (let j = 0; j < 3; j++) {
+      for (let j = 0; j < particleCount; j++) {
         particles.push({
           connection: i,
           t: Math.random(),
@@ -101,6 +107,157 @@ const StarMap = ({ projects, onProjectSelect }) => {
     };
   }, []);
 
+  /* ───── Planet drawing ───── */
+  const drawPlanet = useCallback((ctx, s, r, isResearch, time, isHovered) => {
+    const seed = (s.x * 7 + s.y * 13) | 0;
+    const baseColor = isResearch ? [0, 212, 255] : [123, 97, 255];
+    const [cr, cg, cb] = baseColor;
+
+    // Atmospheric glow
+    const glowGrad = ctx.createRadialGradient(s.x, s.y, r * 0.4, s.x, s.y, r * 3);
+    glowGrad.addColorStop(0, `rgba(${cr},${cg},${cb},${isHovered ? 0.25 : 0.12})`);
+    glowGrad.addColorStop(0.6, `rgba(${cr},${cg},${cb},0.03)`);
+    glowGrad.addColorStop(1, 'transparent');
+    ctx.fillStyle = glowGrad;
+    ctx.beginPath();
+    ctx.arc(s.x, s.y, r * 3, 0, Math.PI * 2);
+    ctx.fill();
+
+    // Shadow base
+    ctx.beginPath();
+    ctx.arc(s.x, s.y, r, 0, Math.PI * 2);
+    ctx.fillStyle = `rgba(${cr >> 2},${cg >> 2},${cb >> 2},0.9)`;
+    ctx.fill();
+
+    // Surface gradient
+    const surfGrad = ctx.createRadialGradient(
+      s.x - r * 0.3, s.y - r * 0.3, r * 0.05,
+      s.x, s.y, r
+    );
+    surfGrad.addColorStop(0, `rgba(${Math.min(cr + 120, 255)},${Math.min(cg + 120, 255)},${Math.min(cb + 120, 255)},1)`);
+    surfGrad.addColorStop(0.35, `rgba(${Math.min(cr + 50, 255)},${Math.min(cg + 50, 255)},${Math.min(cb + 50, 255)},0.95)`);
+    surfGrad.addColorStop(0.7, `rgba(${cr},${cg},${cb},0.85)`);
+    surfGrad.addColorStop(1, `rgba(${cr >> 1},${cg >> 1},${cb >> 1},0.9)`);
+    ctx.beginPath();
+    ctx.arc(s.x, s.y, r * 0.95, 0, Math.PI * 2);
+    ctx.fillStyle = surfGrad;
+    ctx.fill();
+
+    // Surface texture — spots and bands
+    ctx.save();
+    ctx.beginPath();
+    ctx.arc(s.x, s.y, r * 0.93, 0, Math.PI * 2);
+    ctx.clip();
+
+    // Rotating band
+    const bandAngle = time * 0.2 + seed;
+    ctx.save();
+    ctx.translate(s.x, s.y);
+    ctx.rotate(bandAngle);
+    for (let b = -2; b <= 2; b++) {
+      const by = b * r * 0.28;
+      const bAlpha = 0.06 + Math.abs(b) * 0.02;
+      ctx.beginPath();
+      ctx.ellipse(0, by, r * 1.1, r * 0.07, 0, 0, Math.PI * 2);
+      ctx.fillStyle = b > 0
+        ? `rgba(255,255,255,${bAlpha})`
+        : `rgba(0,0,0,${bAlpha + 0.02})`;
+      ctx.fill();
+    }
+    ctx.restore();
+
+    // Surface spots
+    for (let i = 0; i < 5; i++) {
+      const spotAngle = (seed * (i + 1) * 2.3) % (Math.PI * 2);
+      const spotDist = (0.15 + (seed * (i + 3) * 0.13) % 0.6) * r;
+      const spotX = s.x + Math.cos(spotAngle) * spotDist;
+      const spotY = s.y + Math.sin(spotAngle) * spotDist;
+      const spotR = r * (0.08 + ((seed * (i + 7)) % 10) / 10 * 0.12);
+      ctx.beginPath();
+      ctx.arc(spotX, spotY, spotR, 0, Math.PI * 2);
+      ctx.fillStyle = i % 2 === 0
+        ? `rgba(255,255,255,0.06)`
+        : `rgba(0,0,0,0.08)`;
+      ctx.fill();
+    }
+    ctx.restore();
+
+    // Specular highlight
+    const specGrad = ctx.createRadialGradient(
+      s.x - r * 0.3, s.y - r * 0.35, 0,
+      s.x - r * 0.3, s.y - r * 0.35, r * 0.5
+    );
+    specGrad.addColorStop(0, 'rgba(255,255,255,0.35)');
+    specGrad.addColorStop(1, 'rgba(255,255,255,0)');
+    ctx.beginPath();
+    ctx.arc(s.x, s.y, r * 0.95, 0, Math.PI * 2);
+    ctx.fillStyle = specGrad;
+    ctx.fill();
+
+    // Edge rim light
+    const rimGrad = ctx.createRadialGradient(s.x, s.y, r * 0.75, s.x, s.y, r);
+    rimGrad.addColorStop(0, 'transparent');
+    rimGrad.addColorStop(1, `rgba(${cr},${cg},${cb},0.3)`);
+    ctx.beginPath();
+    ctx.arc(s.x, s.y, r, 0, Math.PI * 2);
+    ctx.fillStyle = rimGrad;
+    ctx.fill();
+
+    // Planet-specific decoration
+    if (isResearch) {
+      // Saturn-like ring for research
+      ctx.save();
+      ctx.translate(s.x, s.y);
+      ctx.rotate(-0.4);
+      ctx.scale(1, 0.35);
+      ctx.beginPath();
+      ctx.arc(0, 0, r * 1.55, 0, Math.PI * 2);
+      ctx.strokeStyle = `rgba(${cr},${cg},${cb},0.35)`;
+      ctx.lineWidth = r * 0.14;
+      ctx.stroke();
+      // Inner ring
+      ctx.beginPath();
+      ctx.arc(0, 0, r * 1.3, 0, Math.PI * 2);
+      ctx.strokeStyle = `rgba(${cr},${cg},${cb},0.15)`;
+      ctx.lineWidth = r * 0.06;
+      ctx.stroke();
+      ctx.restore();
+    } else {
+      // Orbiting moon for application
+      const moonAngle = time * 1.8 + seed * 3;
+      const moonDist = r * 1.55;
+      const moonX = s.x + Math.cos(moonAngle) * moonDist;
+      const moonY = s.y + Math.sin(moonAngle) * moonDist * 0.5;
+      const moonR = r * 0.18;
+
+      // Moon orbit trail
+      ctx.beginPath();
+      ctx.ellipse(s.x, s.y, moonDist, moonDist * 0.5, 0, 0, Math.PI * 2);
+      ctx.strokeStyle = `rgba(${cr},${cg},${cb},0.08)`;
+      ctx.lineWidth = 0.5;
+      ctx.stroke();
+
+      // Moon body
+      const moonGrad = ctx.createRadialGradient(
+        moonX - moonR * 0.3, moonY - moonR * 0.3, 0,
+        moonX, moonY, moonR
+      );
+      moonGrad.addColorStop(0, `rgba(${Math.min(cr + 80, 255)},${Math.min(cg + 80, 255)},${Math.min(cb + 80, 255)},0.9)`);
+      moonGrad.addColorStop(1, `rgba(${cr},${cg},${cb},0.5)`);
+      ctx.beginPath();
+      ctx.arc(moonX, moonY, moonR, 0, Math.PI * 2);
+      ctx.fillStyle = moonGrad;
+      ctx.fill();
+    }
+
+    // Border
+    ctx.beginPath();
+    ctx.arc(s.x, s.y, r, 0, Math.PI * 2);
+    ctx.strokeStyle = `rgba(${cr},${cg},${cb},${isHovered ? 0.7 : 0.3})`;
+    ctx.lineWidth = isHovered ? 2 : 1;
+    ctx.stroke();
+  }, []);
+
   /* ───── Main render loop ───── */
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -110,6 +267,10 @@ const StarMap = ({ projects, onProjectSelect }) => {
     const ctx = canvas.getContext('2d');
     let time = 0;
 
+    // Touch-action prevention for non-passive touch events
+    const preventZoom = (e) => e.preventDefault();
+    canvas.addEventListener('touchmove', preventZoom, { passive: false });
+
     const resize = () => {
       const dpr = window.devicePixelRatio || 1;
       const rect = container.getBoundingClientRect();
@@ -118,6 +279,27 @@ const StarMap = ({ projects, onProjectSelect }) => {
       canvas.style.width = rect.width + 'px';
       canvas.style.height = rect.height + 'px';
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+
+      // Auto-fit camera on first resize (mobile-friendly init)
+      if (!cameraInitRef.current && nodes.length > 0) {
+        cameraInitRef.current = true;
+        const w = rect.width;
+        const h = rect.height;
+        const xs = nodes.map(n => n.x);
+        const ys = nodes.map(n => n.y);
+        const minX = Math.min(...xs) - 60;
+        const maxX = Math.max(...xs) + 60;
+        const minY = Math.min(...ys) - 80;
+        const maxY = Math.max(...ys) + 80;
+        const contentW = maxX - minX;
+        const contentH = maxY - minY;
+        const zoom = Math.min(w / contentW, h / contentH, 1.2);
+        cameraRef.current = {
+          x: (minX + maxX) / 2,
+          y: (minY + maxY) / 2,
+          zoom,
+        };
+      }
     };
     resize();
     const resizeObserver = new ResizeObserver(resize);
@@ -201,7 +383,7 @@ const StarMap = ({ projects, onProjectSelect }) => {
         ctx.fill();
       });
 
-      // ── Project orbs ──
+      // ── Project orbs (procedural planets) ──
       const hovered = hoveredRef.current;
       nodes.forEach((node) => {
         const s = worldToScreen(node.x, node.y);
@@ -220,7 +402,6 @@ const StarMap = ({ projects, onProjectSelect }) => {
           ctx.lineWidth = 2;
           ctx.stroke();
 
-          // Second ring
           const pulseR2 = displayR * (1.6 + 0.3 * Math.sin(time * 3));
           ctx.beginPath();
           ctx.arc(s.x, s.y, pulseR2, 0, Math.PI * 2);
@@ -229,31 +410,8 @@ const StarMap = ({ projects, onProjectSelect }) => {
           ctx.stroke();
         }
 
-        // Outer glow
-        const glowGrad = ctx.createRadialGradient(s.x, s.y, displayR * 0.5, s.x, s.y, displayR * 2.5);
-        glowGrad.addColorStop(0, `rgba(${cr},${cg},${cb},${isHovered ? 0.2 : 0.1})`);
-        glowGrad.addColorStop(1, 'transparent');
-        ctx.fillStyle = glowGrad;
-        ctx.beginPath();
-        ctx.arc(s.x, s.y, displayR * 2.5, 0, Math.PI * 2);
-        ctx.fill();
-
-        // Core orb
-        const coreGrad = ctx.createRadialGradient(s.x - displayR * 0.2, s.y - displayR * 0.2, 0, s.x, s.y, displayR);
-        coreGrad.addColorStop(0, `rgba(${Math.min(cr + 100, 255)},${Math.min(cg + 100, 255)},${Math.min(cb + 100, 255)},0.95)`);
-        coreGrad.addColorStop(0.5, `rgba(${cr},${cg},${cb},0.8)`);
-        coreGrad.addColorStop(1, `rgba(${cr},${cg},${cb},0.1)`);
-        ctx.beginPath();
-        ctx.arc(s.x, s.y, displayR, 0, Math.PI * 2);
-        ctx.fillStyle = coreGrad;
-        ctx.fill();
-
-        // Border
-        ctx.beginPath();
-        ctx.arc(s.x, s.y, displayR, 0, Math.PI * 2);
-        ctx.strokeStyle = `rgba(${cr},${cg},${cb},${isHovered ? 0.8 : 0.4})`;
-        ctx.lineWidth = isHovered ? 2 : 1;
-        ctx.stroke();
+        // Draw procedural planet
+        drawPlanet(ctx, s, displayR, node.isResearch, time, isHovered);
 
         // Label
         ctx.textAlign = 'center';
@@ -289,8 +447,9 @@ const StarMap = ({ projects, onProjectSelect }) => {
     return () => {
       cancelAnimationFrame(animRef.current);
       resizeObserver.disconnect();
+      canvas.removeEventListener('touchmove', preventZoom);
     };
-  }, [nodes, stars, nebulae, flowParticles, worldToScreen]);
+  }, [nodes, stars, nebulae, flowParticles, worldToScreen, drawPlanet]);
 
   /* ───── Hit test ───── */
   const hitTest = useCallback((sx, sy) => {
@@ -352,7 +511,6 @@ const StarMap = ({ projects, onProjectSelect }) => {
     dragRef.current.active = false;
     canvasRef.current.style.cursor = hoveredRef.current ? 'pointer' : 'grab';
 
-    // Only trigger click if not dragged
     if (!wasDrag && hoveredRef.current) {
       onProjectSelect(hoveredRef.current);
     }
@@ -364,7 +522,6 @@ const StarMap = ({ projects, onProjectSelect }) => {
     const factor = e.deltaY > 0 ? 0.92 : 1.08;
     const newZoom = Math.max(0.3, Math.min(3, cam.zoom * factor));
 
-    // Zoom toward mouse position
     const rect = containerRef.current.getBoundingClientRect();
     const mx = e.clientX - rect.left;
     const my = e.clientY - rect.top;
@@ -448,6 +605,7 @@ const StarMap = ({ projects, onProjectSelect }) => {
       <canvas
         ref={canvasRef}
         className="w-full h-full block"
+        style={{ touchAction: 'none' }}
         onMouseMove={handleMouseMove}
         onMouseDown={handleMouseDown}
         onMouseUp={handleMouseUp}
