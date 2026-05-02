@@ -9,7 +9,23 @@
       "tech": ["Python", "PyTorch", "YOLO", "Qwen2.5-VL", "OpenCV"],
       "github": "https://github.com/bz2116/uavp",
       "status": "active",
-      "size": 1.2
+      "size": 1.2,
+      "features": [
+        "CUS 复合评分融合置信度与缺陷面积",
+        "语义引导词控制 VLM 推理语气",
+        "低光照条件下端到端缺陷检测",
+        "结构化 JSON 报告自动生成"
+      ],
+      "contributions": [
+        "设计 UAVP 机制并实现 CUS 评分算法",
+        "搭建 YOLO + Qwen2.5-VL 级联推理管线",
+        "构建低光缺陷数据集并完成训练评估"
+      ],
+      "metrics": [
+        { "label": "毕业设计", "value": "本科毕设" },
+        { "label": "基座模型", "value": "7B" },
+        { "label": "检测精度", "value": "优化中" }
+      ]
     },
     {
       "id": "medrnet",
@@ -20,7 +36,23 @@
       "tech": ["PyTorch", "Transformers", "NLP", "Python"],
       "github": "https://link.springer.com/chapter/10.1007/978-981-95-7081-2_22",
       "status": "published",
-      "size": 1.0
+      "size": 1.0,
+      "features": [
+        "多模态知识增强策略",
+        "模型融合提升鲁棒性",
+        "面向医学 NLP 的端到端框架",
+        "在多个基准上取得 SOTA 表现"
+      ],
+      "contributions": [
+        "设计知识增强的多模型融合架构",
+        "实现医学语言理解的训练与推理管线",
+        "完成实验设计、消融实验与论文撰写"
+      ],
+      "metrics": [
+        { "label": "发表", "value": "Springer" },
+        { "label": "作者", "value": "第一作者" },
+        { "label": "领域", "value": "医学 NLP" }
+      ]
     },
     {
       "id": "note-forge",
@@ -31,7 +63,23 @@
       "tech": ["React", "FastAPI", "LangChain", "ChromaDB", "Python"],
       "github": "https://github.com/bz2116/note-forge",
       "status": "active",
-      "size": 1.1
+      "size": 1.1,
+      "features": [
+        "多格式文件上传与解析",
+        "AI 自动生成科研阅读卡片",
+        "项目关联分析与知识图谱",
+        "后续任务清单自动生成"
+      ],
+      "contributions": [
+        "设计 LangChain + ChromaDB 的 RAG 架构",
+        "实现 React 前端与 FastAPI 后端全栈开发",
+        "构建文件解析与卡片生成管线"
+      ],
+      "metrics": [
+        { "label": "支持格式", "value": "4 种" },
+        { "label": "向量库", "value": "ChromaDB" },
+        { "label": "架构", "value": "RAG" }
+      ]
     },
     {
       "id": "book-exchange",
@@ -42,7 +90,23 @@
       "tech": ["Vue.js", "Node.js", "MongoDB", "Redis"],
       "github": "https://github.com/bz2116/book-exchange",
       "status": "completed",
-      "size": 0.9
+      "size": 0.9,
+      "features": [
+        "书籍发布、搜索与预约",
+        "基于偏好的智能推荐",
+        "线下交易流程管理",
+        "Redis 缓存加速查询"
+      ],
+      "contributions": [
+        "设计全栈架构并实现核心交易流程",
+        "基于协同过滤的推荐算法实现",
+        "MongoDB 数据建模与 Redis 缓存优化"
+      ],
+      "metrics": [
+        { "label": "类型", "value": "全栈" },
+        { "label": "数据库", "value": "MongoDB" },
+        { "label": "缓存", "value": "Redis" }
+      ]
     },
     {
       "id": "pose-detection",
@@ -53,7 +117,23 @@
       "tech": ["Python", "OpenCV", "MediaPipe", "TensorFlow"],
       "github": "https://github.com/bz2116/pose-detection",
       "status": "completed",
-      "size": 0.8
+      "size": 0.8,
+      "features": [
+        "实时 17 关键点检测",
+        "视频流与图片双模式",
+        "适用于运动分析场景",
+        "轻量化推理部署"
+      ],
+      "contributions": [
+        "基于 MediaPipe 的关键点检测实现",
+        "视频流实时处理与结果可视化",
+        "模型优化以满足实时性要求"
+      ],
+      "metrics": [
+        { "label": "关键点", "value": "17 个" },
+        { "label": "帧率", "value": "实时" },
+        { "label": "框架", "value": "MediaPipe" }
+      ]
     }
   ]
 }
