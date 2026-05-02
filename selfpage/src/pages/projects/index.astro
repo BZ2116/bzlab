@@ -1,0 +1,36 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import ProjectCard from '../../components/ProjectCard.astro';
+import ProjectFilter from '../../components/ProjectFilter';
+import { projects } from '../../data/projects.json';
+
+const projectsWithType = projects as typeof projects;
+---
+
+<BaseLayout title="Projects — BZ's Lab">
+  <section class="max-w-5xl mx-auto px-4 sm:px-6 py-8 sm:py-12">
+    <!-- Header -->
+    <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-8">
+      <div>
+        <h1 class="font-orbitron text-2xl text-text tracking-wider">Projects</h1>
+        <p class="text-xs text-muted font-mono mt-1">{projects.length} projects</p>
+      </div>
+      <ProjectFilter client:visible onFilter={() => {}} />
+    </div>
+
+    <!-- Grid -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4" id="project-grid">
+      {projects.map((p) => (
+        <ProjectCard
+          slug={p.slug}
+          name={p.name}
+          fullName={p.fullName}
+          type={p.type}
+          description={p.description}
+          tech={p.tech}
+          status={p.status}
+        />
+      ))}
+    </div>
+  </section>
+</BaseLayout>

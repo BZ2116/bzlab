@@ -1,0 +1,33 @@
+---
+import '../styles/global.css';
+import Navbar from '../components/Navbar.astro';
+import CommandPalette from '../components/CommandPalette';
+
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const { title = "BZ's Lab", description = "Bruce Zhao — Software Engineering · Computer Vision · Cybersecurity" } = Astro.props;
+---
+
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" href="./BZ_logo.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#060810" />
+    <meta name="description" content={description} />
+    <title>{title}</title>
+  </head>
+  <body class="min-h-screen bg-bg text-text">
+    <Navbar />
+    <main class="pt-14">
+      <slot />
+    </main>
+    <footer class="border-t border-white/[0.06] py-6 text-center text-xs text-muted font-mono">
+      <p>&copy; 2026 Bruce Zhao · BZ's Lab v2.0</p>
+    </footer>
+    <CommandPalette client:load />
+  </body>
+</html>

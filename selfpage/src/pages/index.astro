@@ -1,0 +1,58 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Console from '../components/Console.astro';
+import profile from '../data/profile.json';
+---
+
+<BaseLayout title="BZ's Lab — 赵耀">
+  <section class="min-h-[calc(100dvh-3.5rem-4rem)] flex flex-col items-center justify-center px-4 sm:px-6 animate-fadeIn">
+    <!-- Name -->
+    <h1 class="font-orbitron text-3xl sm:text-5xl md:text-6xl font-bold text-text tracking-wider text-center">
+      {profile.name} <span class="text-muted">/</span> {profile.nameEn}
+    </h1>
+
+    <!-- Subtitle -->
+    <p class="mt-3 sm:mt-4 text-muted text-xs sm:text-sm font-mono text-center max-w-xl leading-relaxed">
+      {profile.title}
+    </p>
+
+    <!-- Console -->
+    <div class="mt-8 sm:mt-12 w-full animate-slideUp">
+      <Console
+        focus={profile.console.focus}
+        track={profile.console.track}
+        work={profile.console.work}
+      />
+    </div>
+
+    <!-- CTA buttons -->
+    <div class="mt-8 sm:mt-10 flex flex-wrap items-center justify-center gap-3 sm:gap-4">
+      <a
+        href="/projects"
+        class="px-5 py-2.5 rounded-lg bg-accent/10 border border-accent/30 text-accent text-sm font-orbitron hover:bg-accent/20 hover:border-accent/50 transition-all"
+      >
+        Explore Lab
+      </a>
+      <a
+        href="/projects"
+        class="px-5 py-2.5 rounded-lg bg-white/[0.03] border border-white/[0.08] text-muted text-sm font-orbitron hover:text-text hover:border-white/[0.15] transition-all"
+      >
+        View Projects
+      </a>
+      <a
+        href="/classic"
+        class="px-5 py-2.5 rounded-lg bg-white/[0.03] border border-white/[0.08] text-muted text-sm font-orbitron hover:text-text hover:border-white/[0.15] transition-all"
+      >
+        Classic Mode
+      </a>
+    </div>
+
+    <!-- Cmd+K hint -->
+    <p class="mt-8 sm:mt-12 text-[11px] text-muted/40 font-mono">
+      Press <kbd class="px-1.5 py-0.5 rounded bg-white/[0.04] border border-white/[0.08] text-muted/60">Ctrl</kbd>
+      +
+      <kbd class="px-1.5 py-0.5 rounded bg-white/[0.04] border border-white/[0.08] text-muted/60">K</kbd>
+      to search
+    </p>
+  </section>
+</BaseLayout>

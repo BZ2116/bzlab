@@ -1,6 +1,7 @@
 {
   "projects": [
     {
+      "slug": "uavp",
       "id": "uavp",
       "name": "UAVP",
       "fullName": "Uncertainty-Aware Visual Prompting",
@@ -9,7 +10,6 @@
       "tech": ["Python", "PyTorch", "YOLO", "Qwen2.5-VL", "OpenCV"],
       "github": "https://github.com/bz2116/uavp",
       "status": "active",
-      "size": 1.2,
       "features": [
         "CUS 复合评分融合置信度与缺陷面积",
         "语义引导词控制 VLM 推理语气",
@@ -28,6 +28,7 @@
       ]
     },
     {
+      "slug": "medrnet",
       "id": "medrnet",
       "name": "MeDRNet",
       "fullName": "MeDRNet: A Knowledge-Augmented Multi-model Framework for Robust Medical Language Understanding",
@@ -36,7 +37,6 @@
       "tech": ["PyTorch", "Transformers", "NLP", "Python"],
       "github": "https://link.springer.com/chapter/10.1007/978-981-95-7081-2_22",
       "status": "published",
-      "size": 1.0,
       "features": [
         "多模态知识增强策略",
         "模型融合提升鲁棒性",
@@ -55,6 +55,7 @@
       ]
     },
     {
+      "slug": "note-forge",
       "id": "note-forge",
       "name": "NoteForge",
       "fullName": "AI Learning Materials Organizer",
@@ -63,7 +64,6 @@
       "tech": ["React", "FastAPI", "LangChain", "ChromaDB", "Python"],
       "github": "https://github.com/bz2116/note-forge",
       "status": "active",
-      "size": 1.1,
       "features": [
         "多格式文件上传与解析",
         "AI 自动生成科研阅读卡片",
@@ -82,6 +82,7 @@
       ]
     },
     {
+      "slug": "book-exchange",
       "id": "book-exchange",
       "name": "校园二手书",
       "fullName": "Campus Book Exchange Platform",
@@ -90,7 +91,6 @@
       "tech": ["Vue.js", "Node.js", "MongoDB", "Redis"],
       "github": "https://github.com/bz2116/book-exchange",
       "status": "completed",
-      "size": 0.9,
       "features": [
         "书籍发布、搜索与预约",
         "基于偏好的智能推荐",
@@ -109,6 +109,7 @@
       ]
     },
     {
+      "slug": "pose-detection",
       "id": "pose-detection",
       "name": "姿态检测",
       "fullName": "Human Pose Detection System",
@@ -117,7 +118,6 @@
       "tech": ["Python", "OpenCV", "MediaPipe", "TensorFlow"],
       "github": "https://github.com/bz2116/pose-detection",
       "status": "completed",
-      "size": 0.8,
       "features": [
         "实时 17 关键点检测",
         "视频流与图片双模式",

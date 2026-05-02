@@ -1,0 +1,119 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import profile from '../data/profile.json';
+import { projects } from '../data/projects.json';
+import { skills } from '../data/skills.json';
+---
+
+<BaseLayout title="Resume — BZ's Lab">
+  <section class="max-w-3xl mx-auto px-4 sm:px-6 py-8 sm:py-12 animate-fadeIn">
+    <!-- Header -->
+    <div class="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4 mb-10">
+      <div>
+        <h1 class="font-orbitron text-2xl sm:text-3xl text-text tracking-wider">{profile.nameEn}</h1>
+        <p class="text-sm text-muted font-mono mt-2">{profile.title}</p>
+      </div>
+      <a
+        href="./resume.pdf"
+        download
+        class="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-accent/10 border border-accent/30 text-accent text-sm font-mono hover:bg-accent/20 transition-all shrink-0 no-print"
+      >
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width={2} d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+        </svg>
+        Download PDF
+      </a>
+    </div>
+
+    <!-- Education -->
+    <div class="mb-8">
+      <h2 class="text-[10px] font-orbitron text-muted tracking-wider mb-3">EDUCATION</h2>
+      <div class="space-y-0">
+        {profile.education.map(e => (
+          <div class="flex items-baseline justify-between py-2 border-b border-white/[0.04] last:border-0">
+            <div>
+              <span class="text-sm text-text">{e.school}</span>
+              <span class="text-xs text-muted ml-2">{e.degree}</span>
+            </div>
+            <span class="text-xs text-muted font-mono shrink-0">{e.period}</span>
+          </div>
+        ))}
+      </div>
+    </div>
+
+    <!-- Research -->
+    <div class="mb-8">
+      <h2 class="text-[10px] font-orbitron text-muted tracking-wider mb-3">RESEARCH INTERESTS</h2>
+      <div class="flex flex-wrap gap-2">
+        {profile.research.map(tag => (
+          <span class="px-2.5 py-1 rounded-md text-xs font-mono bg-accent/5 text-accent border border-accent/15">
+            {tag}
+          </span>
+        ))}
+      </div>
+    </div>
+
+    <!-- Projects -->
+    <div class="mb-8">
+      <h2 class="text-[10px] font-orbitron text-muted tracking-wider mb-3">SELECTED PROJECTS</h2>
+      <div class="space-y-4">
+        {projects.filter(p => ['uavp', 'medrnet', 'note-forge'].includes(p.slug)).map(p => (
+          <div class="p-4 rounded-lg bg-white/[0.02] border border-white/[0.04]">
+            <div class="flex items-center justify-between mb-1">
+              <a href={`/projects/${p.slug}`} class="text-sm text-text font-medium hover:text-accent transition-colors">{p.name}</a>
+              <span class="text-[10px] text-muted font-mono capitalize">{p.type}</span>
+            </div>
+            <p class="text-xs text-muted font-mono mb-1">{p.fullName}</p>
+            <p class="text-xs text-[#94a3b8] leading-relaxed">{p.description.slice(0, 120)}…</p>
+            <div class="flex flex-wrap gap-1 mt-2">
+              {p.tech.map((t: string) => (
+                <span class="px-1.5 py-0.5 rounded text-[10px] font-mono bg-white/[0.03] text-muted">{t}</span>
+              ))}
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+
+    <!-- Skills -->
+    <div class="mb-8">
+      <h2 class="text-[10px] font-orbitron text-muted tracking-wider mb-3">SKILLS</h2>
+      <div class="space-y-3">
+        {skills.map(cat => (
+          <div class="flex items-start gap-3">
+            <span class="text-xs text-muted font-mono w-28 shrink-0 pt-0.5">{cat.category}</span>
+            <div class="flex flex-wrap gap-1.5">
+              {cat.items.map((item: string) => (
+                <span class="px-2 py-0.5 rounded text-xs font-mono bg-white/[0.03] text-[#94a3b8] border border-white/[0.04]">
+                  {item}
+                </span>
+              ))}
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+
+    <!-- Contact -->
+    <div class="mb-8">
+      <h2 class="text-[10px] font-orbitron text-muted tracking-wider mb-3">CONTACT</h2>
+      <div class="space-y-2">
+        <div class="flex items-center gap-2 text-sm">
+          <span class="text-muted text-xs w-16 shrink-0">Email</span>
+          <a href={`mailto:${profile.contact.email}`} class="text-accent hover:underline">{profile.contact.email}</a>
+        </div>
+        <div class="flex items-center gap-2 text-sm">
+          <span class="text-muted text-xs w-16 shrink-0">GitHub</span>
+          <a href={profile.contact.github} target="_blank" rel="noopener noreferrer" class="text-accent hover:underline">{profile.contact.githubUser}</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  @media print {
+    :global(nav), footer, .no-print { display: none !important; }
+    :global(body) { background: white; color: #1e293b; }
+  }
+</style>

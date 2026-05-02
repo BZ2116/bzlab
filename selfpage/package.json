@@ -1,29 +1,26 @@
 {
-  "name": "selfpage",
-  "version": "0.1.0",
-  "private": true,
-  "homepage": "",
+  "name": "bz-lab",
   "type": "module",
-  "dependencies": {
-    "fuse.js": "^7.0.0",
-    "react": "^18.3.1",
-    "react-dom": "^18.3.1"
-  },
+  "version": "2.0.0",
   "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d dist",
-    "dev": "vite",
-    "build": "vite build",
-    "preview": "vite preview"
+    "deploy": "gh-pages -d dist"
+  },
+  "dependencies": {
+    "astro": "^5.7.0",
+    "@astrojs/react": "^4.2.0",
+    "@astrojs/tailwind": "^6.0.0",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "fuse.js": "^7.0.0"
   },
   "devDependencies": {
     "@types/react": "^18.3.1",
     "@types/react-dom": "^18.3.1",
-    "@vitejs/plugin-react": "^4.3.1",
-    "autoprefixer": "^10.4.19",
-    "gh-pages": "^6.2.0",
-    "postcss": "^8.4.38",
     "tailwindcss": "^3.4.4",
-    "vite": "^5.3.1"
+    "gh-pages": "^6.2.0"
   }
 }

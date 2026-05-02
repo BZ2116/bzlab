@@ -1,0 +1,29 @@
+{
+  "name": "赵耀",
+  "nameEn": "Bruce Zhao",
+  "title": "Software Engineering Student · Computer Vision Researcher · Future Cybersecurity Graduate",
+  "education": [
+    {
+      "period": "2022 — 2026",
+      "school": "重庆邮电大学",
+      "degree": "软件工程 · 本科"
+    },
+    {
+      "period": "2026 — ",
+      "school": "中国科学技术大学",
+      "degree": "硕士研究生 · 网络安全"
+    }
+  ],
+  "research": ["低光视觉感知", "目标检测", "多模态分析", "网络安全", "CTF"],
+  "contact": {
+    "email": "bzy1621@outlook.com",
+    "github": "https://github.com/bz2116",
+    "githubUser": "bz2116"
+  },
+  "bio": "你好！我是赵耀（Bruce Zhao），重庆邮电大学软件工程专业 2026 届毕业生，即将前往中国科学技术大学攻读硕士研究生。本科阶段主要做 AI 和计算机视觉方向的研究，研究生阶段将转向网络安全。热爱探索新技术、参加 CTF 比赛、阅读前沿论文。",
+  "console": {
+    "focus": "Low-light Vision & Vision-Language Reasoning",
+    "track": "CV / VLM / Defect Diagnosis / Security",
+    "work": "UAVP, MeDRNet, NoteForge"
+  }
+}
