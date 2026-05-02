@@ -186,7 +186,7 @@ const AIChat = ({ projects, skills, qaData, onProjectOpen }) => {
       </div>
 
       {/* Messages */}
-      <div ref={messagesRef} className="flex-1 overflow-y-auto px-5 py-4 space-y-4">
+      <div ref={messagesRef} className="flex-1 overflow-y-auto px-3 sm:px-5 py-3 sm:py-4 space-y-3 sm:space-y-4">
         {messages.map((msg) => {
           if (msg.type === 'system') {
             return (
@@ -216,7 +216,7 @@ const AIChat = ({ projects, skills, qaData, onProjectOpen }) => {
           return (
             <div key={msg.id} className={`flex ${isUser ? 'justify-end' : 'justify-start'}`}>
               <div
-                className={`max-w-[80%] rounded-xl px-4 py-3 text-sm font-['JetBrains_Mono'] whitespace-pre-wrap leading-relaxed ${
+                className={`max-w-[90%] sm:max-w-[80%] rounded-xl px-3 sm:px-4 py-2.5 sm:py-3 text-sm font-['JetBrains_Mono'] whitespace-pre-wrap break-words leading-relaxed ${
                   isUser
                     ? 'bg-[#00d4ff]/10 text-[#00d4ff] border border-[#00d4ff]/20'
                     : 'bg-[#131f30] text-[#e8f0f8] border border-white/[0.06]'

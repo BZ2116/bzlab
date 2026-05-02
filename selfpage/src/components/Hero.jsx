@@ -91,35 +91,35 @@ const Hero = ({ onNavigate }) => {
           transition: 'transform 0.15s ease-out',
         }}
       >
-        <div className="mb-4 font-['Orbitron'] text-[#6b7f94] text-xs tracking-[0.3em] animate-pulse">
+        <div className="mb-3 sm:mb-4 font-['Orbitron'] text-[#6b7f94] text-[10px] sm:text-xs tracking-[0.3em] animate-pulse">
           SYSTEM INITIALIZED // WELCOME TO
         </div>
 
-        <h1 className="font-['Orbitron'] text-6xl md:text-8xl font-bold tracking-wider mb-6">
+        <h1 className="font-['Orbitron'] text-4xl sm:text-6xl md:text-8xl font-bold tracking-wider mb-4 sm:mb-6">
           <span className="bg-gradient-to-r from-[#00d4ff] via-[#7b61ff] to-[#00d4ff] bg-clip-text text-transparent animate-gradient">
             BZ's Lab
           </span>
         </h1>
 
-        <div className="flex items-center justify-center gap-4 mb-8">
-          <span className="px-3 py-1 rounded-full text-xs font-['JetBrains_Mono'] bg-[#00d4ff]/10 text-[#00d4ff] border border-[#00d4ff]/30">
+        <div className="flex flex-wrap items-center justify-center gap-2 sm:gap-4 mb-6 sm:mb-8">
+          <span className="px-2.5 py-1 rounded-full text-[10px] sm:text-xs font-['JetBrains_Mono'] bg-[#00d4ff]/10 text-[#00d4ff] border border-[#00d4ff]/30">
             AI
           </span>
-          <span className="text-[#6b7f94]">/</span>
-          <span className="px-3 py-1 rounded-full text-xs font-['JetBrains_Mono'] bg-[#7b61ff]/10 text-[#7b61ff] border border-[#7b61ff]/30">
+          <span className="text-[#6b7f94] hidden sm:inline">/</span>
+          <span className="px-2.5 py-1 rounded-full text-[10px] sm:text-xs font-['JetBrains_Mono'] bg-[#7b61ff]/10 text-[#7b61ff] border border-[#7b61ff]/30">
             Computer Vision
           </span>
-          <span className="text-[#6b7f94]">/</span>
-          <span className="px-3 py-1 rounded-full text-xs font-['JetBrains_Mono'] bg-[#00ff88]/10 text-[#00ff88] border border-[#00ff88]/30">
+          <span className="text-[#6b7f94] hidden sm:inline">/</span>
+          <span className="px-2.5 py-1 rounded-full text-[10px] sm:text-xs font-['JetBrains_Mono'] bg-[#00ff88]/10 text-[#00ff88] border border-[#00ff88]/30">
             Software Engineering
           </span>
         </div>
 
-        <p className="text-[#6b7f94] text-lg max-w-xl mx-auto leading-relaxed font-['JetBrains_Mono']">
+        <p className="text-[#6b7f94] text-sm sm:text-lg max-w-xl mx-auto leading-relaxed font-['JetBrains_Mono']">
           探索低光视觉感知、多模态分析与智能系统开发
         </p>
 
-        <div className="mt-12 flex items-center justify-center gap-6 text-xs font-['JetBrains_Mono'] text-[#6b7f94]">
+        <div className="mt-8 sm:mt-12 flex items-center justify-center gap-3 sm:gap-6 text-[10px] sm:text-xs font-['JetBrains_Mono'] text-[#6b7f94]">
           <span className="flex items-center gap-2">
             <span className="w-2 h-2 rounded-full bg-[#00ff88]"></span>
             5 PROJECTS
@@ -134,7 +134,7 @@ const Hero = ({ onNavigate }) => {
           </span>
         </div>
 
-        <div className="mt-16">
+        <div className="mt-10 sm:mt-16">
           <button
             onClick={() => onNavigate('starmap')}
             className="inline-flex flex-col items-center gap-2 text-[#6b7f94] text-xs font-['JetBrains_Mono'] hover:text-[#00d4ff] transition-colors cursor-pointer"

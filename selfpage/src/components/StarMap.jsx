@@ -5,6 +5,13 @@ const StarMap = ({ projects, onProjectSelect }) => {
   const chartRef = useRef(null);
   const containerRef = useRef(null);
   const [hoveredProject, setHoveredProject] = useState(null);
+  const [isMobile, setIsMobile] = useState(window.innerWidth < 640);
+
+  useEffect(() => {
+    const check = () => setIsMobile(window.innerWidth < 640);
+    window.addEventListener('resize', check);
+    return () => window.removeEventListener('resize', check);
+  }, []);
 
   // Generate background stars
   const stars = useMemo(
@@ -27,12 +34,16 @@ const StarMap = ({ projects, onProjectSelect }) => {
     const chart = echarts.init(chartRef.current);
     const container = containerRef.current;
 
+    const isSmall = container.clientWidth < 500;
+    const baseSize = isSmall ? 25 : 50;
+    const sizeMultiplier = isSmall ? 12 : 25;
+
     const nodes = projects.map((p) => {
       const isResearch = p.type === 'research';
       return {
         name: p.name,
         id: p.id,
-        symbolSize: 50 + p.size * 25,
+        symbolSize: baseSize + p.size * sizeMultiplier,
         symbol: isResearch ? 'circle' : 'diamond',
         itemStyle: {
           color: {
@@ -60,16 +71,16 @@ const StarMap = ({ projects, onProjectSelect }) => {
           rich: {
             title: {
               color: '#e8f0f8',
-              fontSize: 13,
+              fontSize: isSmall ? 10 : 13,
               fontWeight: 'bold',
               fontFamily: 'Orbitron',
-              lineHeight: 20,
+              lineHeight: isSmall ? 15 : 20,
             },
             sub: {
               color: isResearch ? '#00d4ff' : '#7b61ff',
-              fontSize: 10,
+              fontSize: isSmall ? 8 : 10,
               fontFamily: 'JetBrains Mono',
-              lineHeight: 16,
+              lineHeight: isSmall ? 12 : 16,
             },
           },
         },
@@ -167,9 +178,9 @@ const StarMap = ({ projects, onProjectSelect }) => {
           roam: true,
           draggable: true,
           force: {
-            repulsion: 350,
+            repulsion: isSmall ? 150 : 350,
             gravity: 0.08,
-            edgeLength: [120, 280],
+            edgeLength: isSmall ? [60, 150] : [120, 280],
             friction: 0.6,
             layoutAnimation: true,
           },
@@ -235,21 +246,21 @@ const StarMap = ({ projects, onProjectSelect }) => {
       </div>
 
       {/* ECharts container */}
-      <div ref={chartRef} className="w-full h-full min-h-[400px]" />
+      <div ref={chartRef} className="w-full h-full min-h-[300px] sm:min-h-[400px]" />
 
       {/* Title overlay */}
-      <div className="absolute top-5 left-6 pointer-events-none">
-        <div className="font-['Orbitron'] text-[#e8f0f8] text-lg tracking-wider">
+      <div className="absolute top-3 left-3 sm:top-5 sm:left-6 pointer-events-none">
+        <div className="font-['Orbitron'] text-[#e8f0f8] text-sm sm:text-lg tracking-wider">
           STAR MAP
         </div>
-        <div className="text-xs font-['JetBrains_Mono'] text-[#6b7f94] mt-1">
-          {projects.length} projects · click to explore
+        <div className="text-[10px] sm:text-xs font-['JetBrains_Mono'] text-[#6b7f94] mt-1">
+          {projects.length} projects · {isMobile ? 'tap' : 'click'} to explore
         </div>
       </div>
 
-      {/* Hovered project info */}
-      {hoveredProject && (
-        <div className="absolute top-5 right-6 max-w-[240px] pointer-events-none animate-fadeIn">
+      {/* Hovered project info - hidden on mobile */}
+      {hoveredProject && !isMobile && (
+        <div className="absolute top-5 right-6 max-w-[240px] pointer-events-none animate-fadeIn hidden sm:block">
           <div className="bg-[#0d1520]/90 backdrop-blur-md rounded-lg border border-white/[0.08] p-3">
             <div className="font-['Orbitron'] text-sm text-[#00d4ff]">
               {hoveredProject.name}
@@ -272,20 +283,20 @@ const StarMap = ({ projects, onProjectSelect }) => {
       )}
 
       {/* Legend */}
-      <div className="absolute bottom-5 left-6 flex gap-5 text-xs font-['JetBrains_Mono']">
-        <span className="flex items-center gap-2 text-[#6b7f94]">
-          <span className="w-3 h-3 rounded-full bg-gradient-to-br from-[#00d4ff] to-[#0088aa] shadow-[0_0_8px_rgba(0,212,255,0.5)]"></span>
+      <div className="absolute bottom-3 left-3 sm:bottom-5 sm:left-6 flex gap-3 sm:gap-5 text-[10px] sm:text-xs font-['JetBrains_Mono']">
+        <span className="flex items-center gap-1.5 sm:gap-2 text-[#6b7f94]">
+          <span className="w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-full bg-gradient-to-br from-[#00d4ff] to-[#0088aa] shadow-[0_0_8px_rgba(0,212,255,0.5)]"></span>
           Research
         </span>
-        <span className="flex items-center gap-2 text-[#6b7f94]">
-          <span className="w-3 h-3 rotate-45 bg-gradient-to-br from-[#7b61ff] to-[#5533cc] shadow-[0_0_8px_rgba(123,97,255,0.5)]"></span>
-          Application
+        <span className="flex items-center gap-1.5 sm:gap-2 text-[#6b7f94]">
+          <span className="w-2.5 h-2.5 sm:w-3 sm:h-3 rotate-45 bg-gradient-to-br from-[#7b61ff] to-[#5533cc] shadow-[0_0_8px_rgba(123,97,255,0.5)]"></span>
+          App
         </span>
       </div>
 
       {/* Controls hint */}
-      <div className="absolute bottom-5 right-6 text-xs font-['JetBrains_Mono'] text-[#6b7f94]/60">
-        drag to move · scroll to zoom
+      <div className="absolute bottom-3 right-3 sm:bottom-5 sm:right-6 text-[10px] sm:text-xs font-['JetBrains_Mono'] text-[#6b7f94]/60">
+        {isMobile ? 'pinch to zoom' : 'drag to move · scroll to zoom'}
       </div>
     </div>
   );

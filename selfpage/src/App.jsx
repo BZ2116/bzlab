@@ -13,12 +13,12 @@ const ProjectDetail = ({ project, onClose }) => {
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm animate-fadeIn">
-      <div className="w-full max-w-2xl mx-4 bg-[#0d1520] rounded-xl border border-white/[0.08] overflow-hidden animate-slideUp">
+      <div className="w-full max-w-2xl mx-2 sm:mx-4 bg-[#0d1520] rounded-xl border border-white/[0.08] overflow-hidden animate-slideUp">
         {/* Header */}
-        <div className="flex items-center justify-between p-6 border-b border-white/[0.08]">
+        <div className="flex items-center justify-between p-4 sm:p-6 border-b border-white/[0.08]">
           <div>
-            <h2 className="text-2xl font-['Orbitron'] text-[#e8f0f8]">{project.name}</h2>
-            <p className="text-sm text-[#6b7f94] font-['JetBrains_Mono']">{project.fullName}</p>
+            <h2 className="text-xl sm:text-2xl font-['Orbitron'] text-[#e8f0f8]">{project.name}</h2>
+            <p className="text-xs sm:text-sm text-[#6b7f94] font-['JetBrains_Mono']">{project.fullName}</p>
           </div>
           <button
             onClick={onClose}
@@ -29,7 +29,7 @@ const ProjectDetail = ({ project, onClose }) => {
         </div>
 
         {/* Content */}
-        <div className="p-6 space-y-6">
+        <div className="p-4 sm:p-6 space-y-4 sm:space-y-6">
           <div>
             <h3 className="text-xs font-['Orbitron'] text-[#00d4ff] mb-2">项目描述</h3>
             <p className="text-[#e8f0f8] leading-relaxed">{project.description}</p>
@@ -106,11 +106,11 @@ const App = () => {
     <div className="min-h-screen bg-[#060810] text-[#e8f0f8]">
       <Navbar activeModule={activeModule} onModuleChange={setActiveModule} />
 
-      <main className="h-[calc(100vh-3.5rem)] mt-14 overflow-hidden">
+      <main className="h-[calc(100dvh-3.5rem)] mt-14 overflow-hidden">
         {activeModule === 'hero' && <Hero onNavigate={setActiveModule} />}
 
         {activeModule === 'starmap' && (
-          <div className="h-full p-6">
+          <div className="h-full p-3 sm:p-6">
             <div className="h-full bg-[#0d1520]/50 rounded-xl border border-white/[0.08] overflow-hidden">
               <StarMap
                 projects={projectsData.projects}
@@ -122,7 +122,7 @@ const App = () => {
         )}
 
         {activeModule === 'ai' && (
-          <div className="h-full p-6">
+          <div className="h-full p-3 sm:p-6">
             <AIChat
               projects={projectsData.projects}
               skills={skillsData.skills}
@@ -133,7 +133,9 @@ const App = () => {
         )}
       </main>
 
-      <StatusBar />
+      <div className="hidden sm:block">
+        <StatusBar />
+      </div>
 
       {showProjectDetail && (
         <ProjectDetail
