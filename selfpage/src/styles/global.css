@@ -1,40 +1,167 @@
-@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Orbitron:wght@400;500;700;900&display=swap');
+:root {
+  --bg-top: #f8fdf9;
+  --bg-bottom: #f0f7f4;
+  --timeline: #a5d6a7;
+  --node-default: #c8e6c9;
+  --node-hover: #66bb6a;
+  --glow: rgba(165, 214, 167, 0.4);
+  --panel-bg: rgba(255, 255, 255, 0.85);
+  --text-primary: #1a1a1a;
+  --text-muted: #6b7280;
 
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+  --font-sans: 'Inter', system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
 
-@layer base {
-  html {
-    scroll-behavior: smooth;
-    -webkit-font-smoothing: antialiased;
+  --ease-out: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-sans);
+  background: linear-gradient(180deg, var(--bg-top) 0%, var(--bg-bottom) 100%);
+  min-height: 100vh;
+  color: var(--text-primary);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* 时间轴容器 */
+.timeline {
+  position: relative;
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+/* 垂直时间轴线 */
+.timeline::before {
+  content: '';
+  position: absolute;
+  left: 40%;
+  top: 0;
+  bottom: 0;
+  width: 1px;
+  background: var(--timeline);
+}
+
+/* 时间轴节点 */
+.timeline-node {
+  position: relative;
+  padding: 2rem 0;
+  cursor: pointer;
+}
+
+.timeline-node .dot {
+  position: absolute;
+  left: 40%;
+  transform: translateX(-50%);
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--node-default);
+  transition: all 0.2s ease;
+  animation: pulse 3s ease-in-out infinite;
+}
+
+.timeline-node:hover .dot {
+  background: var(--node-hover);
+  transform: translateX(-50%) scale(1.4);
+  box-shadow: 0 0 16px var(--glow), 0 0 32px var(--glow);
+  animation: none;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 0.6; }
+  50% { opacity: 1; }
+}
+
+/* 节点标签 */
+.timeline-node .label {
+  position: absolute;
+  left: calc(40% + 2rem);
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+
+.timeline-node:hover .label {
+  opacity: 1;
+}
+
+/* Panel */
+.timeline-panel {
+  position: fixed;
+  bottom: 20%;
+  left: 50%;
+  transform: translateX(-50%) translateY(20px);
+  width: min(480px, 90vw);
+  background: var(--panel-bg);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-radius: 16px;
+  padding: 1.5rem;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  opacity: 0;
+  pointer-events: none;
+  transition: all 0.3s var(--ease-out);
+  z-index: 100;
+}
+
+.timeline-panel.is-active {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+  pointer-events: auto;
+}
+
+.timeline-panel .close {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  width: 24px;
+  height: 24px;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  font-size: 1.2rem;
+  color: var(--text-muted);
+  line-height: 1;
+}
+
+/* 页面进入动画 */
+.animate-fadeIn {
+  animation: fadeIn 0.6s ease forwards;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@media (max-width: 768px) {
+  .timeline::before {
+    left: 1.5rem;
   }
 
-  body {
-    font-family: 'JetBrains Mono', monospace;
-    background-color: #060810;
-    color: #e8f0f8;
+  .timeline-node .dot {
+    left: 1.5rem;
   }
 
-  ::selection {
-    background-color: rgba(0, 212, 255, 0.25);
-    color: #e8f0f8;
+  .timeline-node .label {
+    left: 3rem;
   }
 
-  ::-webkit-scrollbar {
-    width: 6px;
-  }
-
-  ::-webkit-scrollbar-track {
-    background: #060810;
-  }
-
-  ::-webkit-scrollbar-thumb {
-    background: rgba(0, 212, 255, 0.2);
-    border-radius: 3px;
-  }
-
-  ::-webkit-scrollbar-thumb:hover {
-    background: rgba(0, 212, 255, 0.4);
+  .timeline-panel {
+    width: calc(100vw - 2rem);
+    bottom: 10%;
   }
 }
