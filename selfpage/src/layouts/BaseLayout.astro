@@ -1,7 +1,6 @@
 ---
 import '../styles/global.css';
 import Navbar from '../components/Navbar.astro';
-import CommandPalette from '../components/CommandPalette';
 
 interface Props {
   title?: string;
@@ -16,18 +15,37 @@ const { title = "BZ's Lab", description = "Bruce Zhao — Software Engineering �
     <meta charset="utf-8" />
     <link rel="icon" href="./BZ_logo.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="theme-color" content="#060810" />
+    <meta name="theme-color" content="#f8fdf9" />
     <meta name="description" content={description} />
     <title>{title}</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
   </head>
-  <body class="min-h-screen bg-bg text-text">
+  <body>
     <Navbar />
-    <main class="pt-14">
+    <main>
       <slot />
     </main>
-    <footer class="border-t border-white/[0.06] py-6 text-center text-xs text-muted font-mono">
-      <p>&copy; 2026 Bruce Zhao · BZ's Lab v2.0</p>
+    <footer class="footer">
+      <p>&copy; 2026 Bruce Zhao · BZ's Lab v3.0</p>
     </footer>
-    <CommandPalette client:load />
   </body>
 </html>
+
+<style>
+  main {
+    padding-top: 3.5rem;
+  }
+
+  .footer {
+    text-align: center;
+    padding: 1.5rem;
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    font-family: var(--font-mono);
+    border-top: 1px solid rgba(0, 0, 0, 0.06);
+  }
+</style>
