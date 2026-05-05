@@ -1,13 +1,12 @@
 ---
 import '../styles/global.css';
-import Navbar from '../components/Navbar.astro';
 
 interface Props {
   title?: string;
   description?: string;
 }
 
-const { title = "BZ's Lab", description = "Bruce Zhao — Software Engineering · Computer Vision · Cybersecurity" } = Astro.props;
+const { title = "BZ's Lab — 赵耀", description = "Software Engineering · Computer Vision · Cybersecurity" } = Astro.props;
 ---
 
 <html lang="zh-CN">
@@ -15,21 +14,20 @@ const { title = "BZ's Lab", description = "Bruce Zhao — Software Engineering �
     <meta charset="utf-8" />
     <link rel="icon" href="./BZ_logo.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="theme-color" content="#f8fdf9" />
+    <meta name="theme-color" content="#faf9f7" />
     <meta name="description" content={description} />
     <title>{title}</title>
 
-    <!-- Google Fonts -->
+    <!-- Google Fonts: Playfair Display + Source Sans 3 + JetBrains Mono -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Source+Sans+3:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
   </head>
   <body>
-    <Navbar />
     <main>
       <slot />
     </main>
-    <footer class="footer">
+    <footer class="site-footer">
       <p>&copy; 2026 Bruce Zhao · BZ's Lab v3.0</p>
     </footer>
   </body>
@@ -37,15 +35,16 @@ const { title = "BZ's Lab", description = "Bruce Zhao — Software Engineering �
 
 <style>
   main {
-    padding-top: 3.5rem;
+    min-height: 100vh;
   }
 
-  .footer {
+  .site-footer {
     text-align: center;
-    padding: 1.5rem;
-    font-size: 0.75rem;
-    color: var(--text-muted);
+    padding: 2rem;
     font-family: var(--font-mono);
-    border-top: 1px solid rgba(0, 0, 0, 0.06);
+    font-size: 0.7rem;
+    color: var(--ink-faint);
+    letter-spacing: 0.05em;
+    border-top: 1px solid rgba(26, 24, 22, 0.08);
   }
 </style>

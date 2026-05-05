@@ -5,242 +5,63 @@ import profile from '../data/profile.json';
 
 <BaseLayout title="BZ's Lab — 赵耀">
   <section class="home">
-    <!-- 顶部名字区域 -->
-    <header class="hero animate-fadeIn">
-      <h1 class="name">
-        {profile.name}
-        <span class="separator">/</span>
-        <span class="name-en">{profile.nameEn}</span>
+    <!-- 顶部名字区 -->
+    <header class="hero animate-in">
+      <h1 class="hero-name">
+        <span class="zh">{profile.name}</span>
+        <span class="en">{profile.nameEn}</span>
       </h1>
-      <p class="title">{profile.title}</p>
+      <p class="hero-tagline">{profile.title}</p>
     </header>
 
-    <!-- 时间轴区域 -->
-    <div class="timeline" id="timeline">
-      <!-- 节点1: 本科 -->
-      <div class="timeline-node" data-node="undergrad">
-        <div class="dot"></div>
-        <div class="label">2022 — 重庆邮电大学</div>
+    <!-- 三列信息块 -->
+    <div class="content">
+      <!-- 教育 -->
+      <div class="info-block animate-in delay-1">
+        <div class="block-label">Education</div>
+        <h2 class="block-title">重庆邮电大学</h2>
+        <p class="block-meta">2022 — 2026 · 软件工程</p>
+        <p class="block-desc">本科阶段主要做 AI 和计算机视觉方向的研究，参与多个科研项目，发表论文。</p>
+        <div class="tags">
+          <span class="tag">Computer Vision</span>
+          <span class="tag">Deep Learning</span>
+          <span class="tag">UAVP</span>
+          <span class="tag">MeDRNet</span>
+        </div>
       </div>
 
-      <!-- 节点2: 硕士 -->
-      <div class="timeline-node" data-node="master">
-        <div class="dot"></div>
-        <div class="label">2026 — 中国科学技术大学</div>
+      <!-- 研究方向 -->
+      <div class="info-block animate-in delay-2">
+        <div class="block-label">Research</div>
+        <h2 class="block-title">CV & Security</h2>
+        <p class="block-meta">Low-light · Detection · Multimodal</p>
+        <p class="block-desc">探索计算机视觉和安全科学的交叉地带，做有实际影响力的研究。</p>
+        <div class="tags">
+          {profile.research.map(r => <span class="tag">{r}</span>)}
+        </div>
       </div>
 
-      <!-- 节点3: 研究方向 -->
-      <div class="timeline-node" data-node="research">
-        <div class="dot"></div>
-        <div class="label">CV / VLM / Security</div>
+      <!-- 未来 -->
+      <div class="info-block animate-in delay-3">
+        <div class="block-label">Next</div>
+        <h2 class="block-title">中国科学技术大学</h2>
+        <p class="block-meta">2026 — · 网络空间安全</p>
+        <p class="block-desc">研究生阶段将转向网络安全，继续深入 CV 和 AI 方向的研究。热爱 CTF 竞赛和新技术探索。</p>
+        <div class="tags">
+          <span class="tag">Cybersecurity</span>
+          <span class="tag">CTF</span>
+          <span class="tag">Binary</span>
+        </div>
       </div>
     </div>
 
-    <!-- Panel 容器 -->
-    <div class="timeline-panel" id="panel">
-      <button class="close" id="close">&times;</button>
-      <div class="panel-content" id="panel-content"></div>
+    <!-- 底部链接 -->
+    <div class="footer-links animate-in delay-4">
+      <a href="/projects" class="footer-link">Projects</a>
+      <a href="/resume" class="footer-link">Resume</a>
+      <a href="/classic" class="footer-link">Classic</a>
+      <a href="https://github.com/bz2116" class="footer-link" target="_blank" rel="noopener">GitHub</a>
+      <a href="mailto:bzy1621@outlook.com" class="footer-link">Email</a>
     </div>
   </section>
 </BaseLayout>
-
-<script>
-  const panelData = {
-    undergrad: {
-      title: '本科 · 重庆邮电大学',
-      period: '2022 — 2026',
-      tags: ['软件工程', 'CV', 'AI Research'],
-      projects: ['UAVP', 'MeDRNet', 'NoteForge'],
-      description: '主要做计算机视觉和 AI 方向的研究，参与多个科研项目，发表论文。'
-    },
-    master: {
-      title: '硕士 · 中国科学技术大学',
-      period: '2026 — ',
-      tags: ['网络安全', 'CTF', '二进制安全'],
-      research: ['低光视觉感知', '目标检测', '多模态分析', '网络安全'],
-      description: '研究生阶段将转向网络安全，深入 CV 和安全交叉方向的研究。'
-    },
-    research: {
-      title: 'Research Interests',
-      keywords: profile.research,
-      description: '探索 CV 和安全的交叉地带，做有实际影响力的研究。'
-    }
-  };
-
-  const timeline = document.getElementById('timeline');
-  const panel = document.getElementById('panel');
-  const panelContent = document.getElementById('panel-content');
-  const closeBtn = document.getElementById('close');
-
-  let activeNode = null;
-
-  function renderPanel(nodeId) {
-    const data = panelData[nodeId];
-    let html = `<h3 class="panel-title">${data.title}</h3>`;
-    html += `<p class="panel-period">${data.period || ''}</p>`;
-    html += `<p class="panel-desc">${data.description}</p>`;
-
-    if (data.tags) {
-      html += `<div class="panel-tags">`;
-      data.tags.forEach(t => html += `<span class="tag">${t}</span>`);
-      html += `</div>`;
-    }
-
-    if (data.projects) {
-      html += `<div class="panel-section"><h4>Projects</h4><ul>`;
-      data.projects.forEach(p => html += `<li>${p}</li>`);
-      html += `</ul></div>`;
-    }
-
-    if (data.keywords) {
-      html += `<div class="panel-keywords">`;
-      data.keywords.forEach(k => html += `<span class="keyword">${k}</span>`);
-      html += `</div>`;
-    }
-
-    return html;
-  }
-
-  timeline.addEventListener('click', (e) => {
-    const node = e.target.closest('.timeline-node');
-    if (!node) return;
-
-    const nodeId = node.dataset.node;
-
-    if (activeNode === nodeId) {
-      panel.classList.remove('is-active');
-      activeNode = null;
-    } else {
-      panelContent.innerHTML = renderPanel(nodeId);
-      panel.classList.add('is-active');
-      activeNode = nodeId;
-    }
-  });
-
-  closeBtn.addEventListener('click', () => {
-    panel.classList.remove('is-active');
-    activeNode = null;
-  });
-
-  document.addEventListener('click', (e) => {
-    if (!panel.contains(e.target) && !e.target.closest('.timeline-node')) {
-      panel.classList.remove('is-active');
-      activeNode = null;
-    }
-  });
-</script>
-
-<style>
-  .home {
-    min-height: calc(100dvh - 3.5rem - 4rem);
-    display: flex;
-    flex-direction: column;
-    padding-top: 10vh;
-  }
-
-  .hero {
-    text-align: center;
-    margin-bottom: 4rem;
-    padding: 0 2rem;
-  }
-
-  .name {
-    font-size: clamp(2rem, 5vw, 3.5rem);
-    font-weight: 700;
-    color: var(--text-primary);
-    letter-spacing: -0.02em;
-  }
-
-  .separator {
-    color: var(--text-muted);
-    margin: 0 0.3em;
-  }
-
-  .name-en {
-    color: var(--text-muted);
-  }
-
-  .title {
-    margin-top: 0.75rem;
-    font-size: 0.95rem;
-    color: var(--text-muted);
-    font-family: var(--font-mono);
-  }
-
-  .timeline {
-    flex: 1;
-    position: relative;
-    max-width: 960px;
-    width: 100%;
-    margin: 0 auto;
-    padding: 0 2rem;
-  }
-
-  .timeline-node {
-    position: relative;
-    padding: 1.5rem 0;
-    cursor: pointer;
-  }
-
-  .timeline-node .label {
-    font-family: var(--font-mono);
-    font-size: 0.8rem;
-    color: var(--text-muted);
-  }
-
-  .panel-title {
-    font-size: 1.1rem;
-    font-weight: 600;
-    color: var(--text-primary);
-    margin-bottom: 0.25rem;
-  }
-
-  .panel-period {
-    font-family: var(--font-mono);
-    font-size: 0.75rem;
-    color: var(--text-muted);
-    margin-bottom: 1rem;
-  }
-
-  .panel-desc {
-    font-size: 0.9rem;
-    color: var(--text-primary);
-    line-height: 1.6;
-    margin-bottom: 1rem;
-  }
-
-  .panel-tags, .panel-keywords {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.5rem;
-    margin-bottom: 1rem;
-  }
-
-  .tag, .keyword {
-    font-size: 0.75rem;
-    padding: 0.25rem 0.75rem;
-    border-radius: 9999px;
-    background: var(--node-default);
-    color: var(--text-primary);
-    font-family: var(--font-mono);
-  }
-
-  .panel-section h4 {
-    font-size: 0.8rem;
-    font-weight: 600;
-    margin-bottom: 0.5rem;
-    color: var(--text-muted);
-  }
-
-  .panel-section ul {
-    list-style: none;
-    padding: 0;
-  }
-
-  .panel-section li {
-    font-size: 0.85rem;
-    padding: 0.25rem 0;
-    color: var(--text-primary);
-    font-family: var(--font-mono);
-  }
-</style>
