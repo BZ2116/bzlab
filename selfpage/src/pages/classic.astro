@@ -1,41 +1,22 @@
 ---
-import '../styles/global.css';
-import ClassicTabs from '../components/ClassicTabs';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import profile from '../data/profile.json';
 ---
 
-<html lang="zh-CN">
-  <head>
-    <meta charset="utf-8" />
-    <link rel="icon" href="./BZ_logo.png" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="theme-color" content="#f8fafb" />
-    <meta name="description" content="Bruce Zhao — 个人主页" />
-    <title>Bruce Zhao — Classic</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
-  </head>
-  <body class="min-h-screen bg-[#f8fafb] text-[#334155]" style="font-family: 'Inter', system-ui, sans-serif;">
-    <div class="max-w-3xl mx-auto px-6 pt-12 sm:pt-16 pb-8 text-center">
-      <!-- Avatar -->
-      <div class="w-20 h-20 sm:w-24 sm:h-24 rounded-full mx-auto mb-4 overflow-hidden ring-4 ring-white shadow-lg">
-        <img src="./img/BZ/BZ11.jpg" alt="BZ" class="w-full h-full object-cover" />
-      </div>
-      <h1 class="text-2xl sm:text-3xl font-bold text-[#1e293b] tracking-tight">Bruce Zhao</h1>
-      <p class="text-[#64748b] mt-2 text-sm sm:text-base">重庆邮电大学 · 软件工程 · 即将前往中国科学技术大学</p>
-      <p class="text-[#94a3b8] mt-1 text-xs">本科 AI & CV → 研究生网络安全</p>
-
-      <div class="mt-4">
-        <a href="/" class="text-xs text-[#94a3b8] hover:text-[#2dd4bf] transition-colors">
-          ← Back to BZ's Lab
-        </a>
-      </div>
+<BaseLayout title="Archive · Bruce Zhao">
+  <section class="section page-hero">
+    <p class="eyebrow">Archive</p>
+    <h1 class="page-title">A quieter photo wall for the old homepage.</h1>
+    <p class="lead">保留一点旧版主页的生活感，但视觉系统已经并入 v3.0。</p>
+    <div class="button-row">
+      <a class="button primary" href="/">Back Home</a>
+      <a class="button" href={`mailto:${profile.contact.email}`}>Contact</a>
     </div>
+  </section>
 
-    <ClassicTabs client:visible />
-
-    <div class="border-t border-[#e2e8f0] py-6 text-center mt-8">
-      <p class="text-xs text-[#94a3b8]">&copy; 2026 Bruce Zhao</p>
-    </div>
-  </body>
-</html>
+  <section class="section archive-photo-grid">
+    <img src="/img/BZ/BZ1.jpg" alt="Bruce Zhao archive photo 1" />
+    <img src="/img/BZ/BZ2.jpg" alt="Bruce Zhao archive photo 2" />
+    <img src="/img/BZ/BZ3.jpg" alt="Bruce Zhao archive photo 3" />
+  </section>
+</BaseLayout>

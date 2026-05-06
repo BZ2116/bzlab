@@ -1,34 +1,28 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import ProjectCard from '../../components/ProjectCard.astro';
-import ProjectFilter from '../../components/ProjectFilter';
 import { projects } from '../../data/projects.json';
-
-const projectsWithType = projects as typeof projects;
 ---
 
-<BaseLayout title="Projects — BZ's Lab">
-  <section class="max-w-5xl mx-auto px-4 sm:px-6 py-8 sm:py-12">
-    <!-- Header -->
-    <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-8">
-      <div>
-        <h1 class="font-orbitron text-2xl text-text tracking-wider">Projects</h1>
-        <p class="text-xs text-muted font-mono mt-1">{projects.length} projects</p>
-      </div>
-      <ProjectFilter client:visible onFilter={() => {}} />
-    </div>
+<BaseLayout title="Projects · Bruce Zhao">
+  <section class="section page-hero">
+    <p class="eyebrow">Projects</p>
+    <h1 class="page-title">Research prototypes, AI tools, and full-stack systems.</h1>
+    <p class="lead">这里收录的是能体现研究方向和工程能力的项目：从低光视觉、多模态推理，到科研 Agent 和全栈应用。</p>
+  </section>
 
-    <!-- Grid -->
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4" id="project-grid">
-      {projects.map((p) => (
+  <section class="section">
+    <div class="work-grid">
+      {projects.map((project, index) => (
         <ProjectCard
-          slug={p.slug}
-          name={p.name}
-          fullName={p.fullName}
-          type={p.type}
-          description={p.description}
-          tech={p.tech}
-          status={p.status}
+          slug={project.slug}
+          name={project.name}
+          fullName={project.fullName}
+          type={project.type}
+          description={project.description}
+          tech={project.tech}
+          status={project.status}
+          featured={index === 0}
         />
       ))}
     </div>

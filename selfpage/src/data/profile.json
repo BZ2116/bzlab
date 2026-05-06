@@ -1,29 +1,38 @@
 {
   "name": "赵耀",
   "nameEn": "Bruce Zhao",
-  "title": "Software Engineering Student · Computer Vision Researcher · Future Cybersecurity Graduate",
+  "title": "Software Engineering Student · Computer Vision Researcher · Cybersecurity Graduate Student",
+  "location": "Chongqing / Hefei, China",
+  "signature": "Building reliable AI systems across perception, reasoning, and security.",
   "education": [
     {
-      "period": "2022 — 2026",
+      "period": "2022 - 2026",
       "school": "重庆邮电大学",
-      "degree": "软件工程 · 本科"
+      "degree": "软件工程 · 本科",
+      "note": "聚焦计算机视觉、深度学习与全栈工程实践"
     },
     {
-      "period": "2026 — ",
+      "period": "2026 -",
       "school": "中国科学技术大学",
-      "degree": "硕士研究生 · 网络安全"
+      "degree": "网络空间安全 · 硕士研究生",
+      "note": "继续探索 AI 系统安全、攻防实践与可信智能"
     }
   ],
-  "research": ["低光视觉感知", "目标检测", "多模态分析", "网络安全", "CTF"],
+  "research": ["低光视觉感知", "目标检测", "多模态推理", "医学语言理解", "网络安全", "CTF"],
   "contact": {
     "email": "bzy1621@outlook.com",
     "github": "https://github.com/bz2116",
     "githubUser": "bz2116"
   },
-  "bio": "你好！我是赵耀（Bruce Zhao），重庆邮电大学软件工程专业 2026 届毕业生，即将前往中国科学技术大学攻读硕士研究生。本科阶段主要做 AI 和计算机视觉方向的研究，研究生阶段将转向网络安全。热爱探索新技术、参加 CTF 比赛、阅读前沿论文。",
+  "bio": "你好，我是赵耀（Bruce Zhao）。本科阶段在重庆邮电大学软件工程专业学习，主要围绕计算机视觉、多模态模型和 AI 工程化做研究与项目实践；研究生阶段将前往中国科学技术大学攻读网络空间安全方向。我喜欢把研究问题做成可运行、可复现、可展示的系统，也持续参与 CTF 和安全方向的学习。",
+  "highlights": [
+    "提出 UAVP 低光缺陷分析流程，将检测置信度、缺陷面积和视觉语言模型推理连接成结构化报告生成链路。",
+    "作为第一作者参与 MeDRNet 医学语言理解研究，论文发表于 Springer 相关会议论文集。",
+    "长期维护个人 AI 工具、科研材料整理工具和全栈应用项目，关注从模型到产品的完整闭环。"
+  ],
   "console": {
-    "focus": "Low-light Vision & Vision-Language Reasoning",
-    "track": "CV / VLM / Defect Diagnosis / Security",
-    "work": "UAVP, MeDRNet, NoteForge"
+    "focus": "Low-light Vision / Multimodal Reasoning / Security",
+    "track": "CV · VLM · Defect Diagnosis · CTF",
+    "work": "UAVP · MeDRNet · NoteForge"
   }
 }

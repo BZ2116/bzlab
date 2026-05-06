@@ -1,24 +1,28 @@
 {
   "skills": [
     {
-      "category": "编程语言",
-      "items": ["Python", "JavaScript", "TypeScript", "C++", "Go"]
+      "category": "Programming",
+      "items": ["Python", "TypeScript", "JavaScript", "C++", "Go"]
     },
     {
       "category": "AI / ML",
-      "items": ["PyTorch", "TensorFlow", "OpenCV", "MediaPipe", "Transformers", "LangChain"]
+      "items": ["PyTorch", "TensorFlow", "OpenCV", "Transformers", "MediaPipe", "LangChain"]
     },
     {
-      "category": "前端",
-      "items": ["React", "Vue.js", "TailwindCSS", "Framer Motion", "Vite"]
+      "category": "Frontend",
+      "items": ["Astro", "React", "Vue.js", "TailwindCSS", "Vite"]
     },
     {
-      "category": "后端 / 基础设施",
-      "items": ["Node.js", "FastAPI", "MongoDB", "Redis", "Docker", "GitHub Actions"]
+      "category": "Backend / Infra",
+      "items": ["FastAPI", "Node.js", "MongoDB", "Redis", "Docker", "GitHub Actions"]
     },
     {
-      "category": "研究领域",
-      "items": ["计算机视觉", "目标检测", "多模态学习", "低光视觉", "姿态识别"]
+      "category": "Research",
+      "items": ["Computer Vision", "Object Detection", "Multimodal Learning", "Low-light Vision", "Medical NLP"]
+    },
+    {
+      "category": "Security",
+      "items": ["CTF", "Web Security", "Binary Basics", "Linux", "Reverse Engineering"]
     }
   ]
 }

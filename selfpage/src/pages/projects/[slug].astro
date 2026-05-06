@@ -3,131 +3,62 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import { projects } from '../../data/projects.json';
 
 export function getStaticPaths() {
-  return projects.map(p => ({
-    params: { slug: p.slug },
-    props: { project: p },
+  return projects.map((project) => ({
+    params: { slug: project.slug },
+    props: { project },
   }));
 }
 
 const { project } = Astro.props;
-const typeColor = project.type === 'research' ? '#00d4ff' : '#7b61ff';
-
-const statusMap: Record<string, { label: string; cls: string }> = {
-  active: { label: 'Active', cls: 'text-success bg-success/15 border-success/30' },
-  published: { label: 'Published', cls: 'text-accent bg-accent/15 border-accent/30' },
-  completed: { label: 'Completed', cls: 'text-muted bg-muted/15 border-muted/30' },
-};
-const s = statusMap[project.status] || statusMap.completed;
 ---
 
-<BaseLayout title={`${project.name} — BZ's Lab`}>
-  <section class="max-w-3xl mx-auto px-4 sm:px-6 py-8 sm:py-12 animate-fadeIn">
-    <!-- Back link -->
-    <a href="/projects" class="inline-flex items-center gap-1.5 text-xs text-muted font-mono hover:text-text transition-colors mb-8">
-      <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width={2} d="M15 19l-7-7 7-7" />
-      </svg>
-      Back to Projects
-    </a>
+<BaseLayout title={`${project.name} · Bruce Zhao`} description={project.description}>
+  <section class="section page-hero compact">
+    <a class="button" href="/projects">Back to Projects</a>
+    <p class="eyebrow" style="margin-top: 2rem;">{project.type} / {project.status}</p>
+    <h1 class="page-title">{project.name}</h1>
+    <p class="lead">{project.fullName}</p>
+  </section>
 
-    <!-- Header -->
-    <div class="mb-8">
-      <div class="flex items-center gap-3 mb-2">
-        <div class="w-3 h-3 rounded-full" style={{ backgroundColor: typeColor }}></div>
-        <h1 class="font-orbitron text-2xl sm:text-3xl text-text tracking-wider">{project.name}</h1>
-        <span class={`inline-flex items-center gap-1 px-2 py-0.5 rounded text-[11px] font-mono border ${s.cls}`}>
-          <span class={`w-1.5 h-1.5 rounded-full ${project.status === 'active' ? 'bg-success' : project.status === 'published' ? 'bg-accent' : 'bg-muted'}`}></span>
-          {s.label}
-        </span>
+  <section class="section project-page-grid">
+    <article class="detail-card">
+      <h2>Overview</h2>
+      <p class="lead" style="margin-top: 0;">{project.description}</p>
+      <div class="button-row">
+        <a class="button primary" href={project.github} target="_blank" rel="noopener noreferrer">
+          {project.github.includes('springer.com') ? 'View Paper' : 'View Repository'}
+        </a>
       </div>
-      <p class="text-sm text-muted font-mono">{project.fullName}</p>
-    </div>
+    </article>
 
-    <!-- Description -->
-    <p class="text-sm sm:text-[15px] text-[#94a3b8] leading-relaxed font-mono mb-10">
-      {project.description}
-    </p>
-
-    <!-- Features -->
-    {project.features && (
-      <div class="mb-10">
-        <h2 class="text-[10px] font-orbitron text-muted tracking-wider mb-4">FEATURES</h2>
-        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
-          {project.features.map((f: string, i: number) => (
-            <div class="flex items-start gap-3 p-3.5 rounded-lg bg-white/[0.02] border border-white/[0.04] hover:border-white/[0.08] transition-colors">
-              <span
-                class="shrink-0 w-6 h-6 rounded-md flex items-center justify-center text-[11px] font-orbitron mt-0.5"
-                style={{
-                  backgroundColor: `${typeColor}10`,
-                  color: typeColor,
-                  border: `1px solid ${typeColor}20`,
-                }}
-              >
-                {String(i + 1).padStart(2, '0')}
-              </span>
-              <span class="text-sm text-[#b0bec5] font-mono leading-relaxed">{f}</span>
-            </div>
-          ))}
-        </div>
+    <aside class="detail-card">
+      <h2>Stack</h2>
+      <div class="tag-list">
+        {project.tech.map((item) => <span class="tag">{item}</span>)}
       </div>
-    )}
-
-    <!-- Two column: Tech + Metrics -->
-    <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-10">
-      <!-- Tech Stack -->
-      <div>
-        <h2 class="text-[10px] font-orbitron text-muted tracking-wider mb-3">TECH STACK</h2>
-        <div class="flex flex-wrap gap-1.5">
-          {project.tech.map((t: string) => (
-            <span class="px-2.5 py-1 rounded-md text-[11px] font-mono bg-white/[0.03] text-[#94a3b8] border border-white/[0.06]">
-              {t}
-            </span>
-          ))}
-        </div>
-      </div>
-
-      <!-- Metrics -->
-      {project.metrics && (
-        <div>
-          <h2 class="text-[10px] font-orbitron text-muted tracking-wider mb-3">METRICS</h2>
-          <div class="space-y-2.5">
-            {project.metrics.map((m: { label: string; value: string }) => (
-              <div class="flex items-baseline justify-between">
-                <span class="text-[11px] text-muted font-mono">{m.label}</span>
-                <span class="text-sm text-text font-orbitron">{m.value}</span>
-              </div>
-            ))}
+      <h2 style="margin-top: 1.5rem;">Metrics</h2>
+      <div class="metric-list">
+        {project.metrics.map((metric) => (
+          <div>
+            <span>{metric.label}</span>
+            <strong>{metric.value}</strong>
           </div>
-        </div>
-      )}
-    </div>
-
-    <!-- Contributions -->
-    {project.contributions && (
-      <div class="mb-10">
-        <h2 class="text-[10px] font-orbitron text-muted tracking-wider mb-3">CONTRIBUTIONS</h2>
-        <ul class="space-y-2.5">
-          {project.contributions.map((c: string) => (
-            <li class="flex items-start gap-2">
-              <span class="text-accent text-xs mt-0.5 shrink-0">›</span>
-              <span class="text-[12px] text-[#94a3b8] font-mono leading-relaxed">{c}</span>
-            </li>
-          ))}
-        </ul>
+        ))}
       </div>
-    )}
+    </aside>
 
-    <!-- GitHub link -->
-    <a
-      href={project.github}
-      target="_blank"
-      rel="noopener noreferrer"
-      class="inline-flex items-center gap-2.5 px-5 py-2.5 rounded-lg bg-white/[0.04] border border-white/[0.08] text-[#94a3b8] hover:text-text hover:border-white/[0.15] hover:bg-white/[0.06] transition-all text-sm font-mono"
-    >
-      <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
-        <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
-      </svg>
-      {project.github.includes('springer.com') ? 'View Paper' : 'View on GitHub'}
-    </a>
+    <section class="detail-card">
+      <h2>Key Features</h2>
+      <ul class="clean-list">
+        {project.features.map((item) => <li>{item}</li>)}
+      </ul>
+    </section>
+
+    <section class="detail-card">
+      <h2>Contributions</h2>
+      <ul class="clean-list">
+        {project.contributions.map((item) => <li>{item}</li>)}
+      </ul>
+    </section>
   </section>
 </BaseLayout>

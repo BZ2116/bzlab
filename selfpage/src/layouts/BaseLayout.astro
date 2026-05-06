@@ -1,50 +1,69 @@
 ---
 import '../styles/global.css';
+import profile from '../data/profile.json';
 
 interface Props {
   title?: string;
   description?: string;
 }
 
-const { title = "BZ's Lab — 赵耀", description = "Software Engineering · Computer Vision · Cybersecurity" } = Astro.props;
+const {
+  title = "Bruce Zhao · BZ Lab",
+  description = "Bruce Zhao's personal homepage for computer vision, multimodal AI, and cybersecurity research.",
+} = Astro.props;
+
+const links = [
+  { href: '/', label: 'Home' },
+  { href: '/projects', label: 'Projects' },
+  { href: '/resume', label: 'Resume' },
+  { href: '/classic', label: 'Archive' },
+];
+
+const currentPath = Astro.url.pathname;
 ---
 
+<!doctype html>
 <html lang="zh-CN">
   <head>
     <meta charset="utf-8" />
-    <link rel="icon" href="./BZ_logo.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="theme-color" content="#faf9f7" />
     <meta name="description" content={description} />
+    <meta name="theme-color" content="#eef3f0" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
+    <link rel="icon" href="/BZ_logo.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Serif:wght@500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
     <title>{title}</title>
-
-    <!-- Google Fonts: Playfair Display + Source Sans 3 + JetBrains Mono -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Source+Sans+3:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
   </head>
   <body>
+    <div class="grain" aria-hidden="true"></div>
+    <header class="site-header">
+      <a class="brand" href="/" aria-label="Bruce Zhao homepage">
+        <img src="/BZ_logo.png" alt="" />
+        <span>BZ Lab</span>
+      </a>
+      <nav class="site-nav" aria-label="Primary navigation">
+        {links.map((link) => {
+          const active = link.href === '/' ? currentPath === '/' : currentPath.startsWith(link.href);
+          return (
+            <a href={link.href} class={active ? 'active' : ''}>{link.label}</a>
+          );
+        })}
+      </nav>
+      <a class="header-contact" href={`mailto:${profile.contact.email}`}>Email</a>
+    </header>
     <main>
       <slot />
     </main>
     <footer class="site-footer">
-      <p>&copy; 2026 Bruce Zhao · BZ's Lab v3.0</p>
+      <div>
+        <strong>{profile.nameEn}</strong>
+        <span>Computer Vision · Multimodal AI · Cybersecurity</span>
+      </div>
+      <span>BZ Lab v3.0 · 2026</span>
     </footer>
   </body>
 </html>
-
-<style>
-  main {
-    min-height: 100vh;
-  }
-
-  .site-footer {
-    text-align: center;
-    padding: 2rem;
-    font-family: var(--font-mono);
-    font-size: 0.7rem;
-    color: var(--ink-faint);
-    letter-spacing: 0.05em;
-    border-top: 1px solid rgba(26, 24, 22, 0.08);
-  }
-</style>

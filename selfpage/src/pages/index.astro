@@ -1,67 +1,112 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import profile from '../data/profile.json';
+import { projects } from '../data/projects.json';
+
+const featured = projects.slice(0, 3);
 ---
 
-<BaseLayout title="BZ's Lab — 赵耀">
-  <section class="home">
-    <!-- 顶部名字区 -->
-    <header class="hero animate-in">
-      <h1 class="hero-name">
-        <span class="zh">{profile.name}</span>
-        <span class="en">{profile.nameEn}</span>
-      </h1>
-      <p class="hero-tagline">{profile.title}</p>
-    </header>
-
-    <!-- 三列信息块 -->
-    <div class="content">
-      <!-- 教育 -->
-      <div class="info-block animate-in delay-1">
-        <div class="block-label">Education</div>
-        <h2 class="block-title">重庆邮电大学</h2>
-        <p class="block-meta">2022 — 2026 · 软件工程</p>
-        <p class="block-desc">本科阶段主要做 AI 和计算机视觉方向的研究，参与多个科研项目，发表论文。</p>
-        <div class="tags">
-          <span class="tag">Computer Vision</span>
-          <span class="tag">Deep Learning</span>
-          <span class="tag">UAVP</span>
-          <span class="tag">MeDRNet</span>
-        </div>
+<BaseLayout title="Bruce Zhao · BZ Lab v3.0" description={profile.bio}>
+  <section class="section hero">
+    <div>
+      <p class="eyebrow">Personal research homepage / v3.0</p>
+      <h1 class="hero-title">{profile.nameEn}<br />{profile.name}</h1>
+      <p class="lead">{profile.signature}</p>
+      <p class="lead">{profile.bio}</p>
+      <div class="button-row">
+        <a class="button primary" href="/projects">View Projects</a>
+        <a class="button" href="/resume">Open Resume</a>
+        <a class="button" href={profile.contact.github} target="_blank" rel="noopener noreferrer">GitHub</a>
       </div>
-
-      <!-- 研究方向 -->
-      <div class="info-block animate-in delay-2">
-        <div class="block-label">Research</div>
-        <h2 class="block-title">CV & Security</h2>
-        <p class="block-meta">Low-light · Detection · Multimodal</p>
-        <p class="block-desc">探索计算机视觉和安全科学的交叉地带，做有实际影响力的研究。</p>
-        <div class="tags">
-          {profile.research.map(r => <span class="tag">{r}</span>)}
+      <div class="hero-meta" aria-label="Profile summary">
+        <div>
+          <span>Current</span>
+          <strong>Software Engineering</strong>
         </div>
-      </div>
-
-      <!-- 未来 -->
-      <div class="info-block animate-in delay-3">
-        <div class="block-label">Next</div>
-        <h2 class="block-title">中国科学技术大学</h2>
-        <p class="block-meta">2026 — · 网络空间安全</p>
-        <p class="block-desc">研究生阶段将转向网络安全，继续深入 CV 和 AI 方向的研究。热爱 CTF 竞赛和新技术探索。</p>
-        <div class="tags">
-          <span class="tag">Cybersecurity</span>
-          <span class="tag">CTF</span>
-          <span class="tag">Binary</span>
+        <div>
+          <span>Research</span>
+          <strong>Vision + VLM</strong>
+        </div>
+        <div>
+          <span>Next</span>
+          <strong>Cybersecurity</strong>
         </div>
       </div>
     </div>
+    <aside class="panel hero-visual">
+      <img src="/img/BZ/BZ11.jpg" alt="Bruce Zhao portrait and campus life" />
+      <div class="visual-caption">
+        {profile.console.focus}<br />
+        {profile.console.work}
+      </div>
+    </aside>
+  </section>
 
-    <!-- 底部链接 -->
-    <div class="footer-links animate-in delay-4">
-      <a href="/projects" class="footer-link">Projects</a>
-      <a href="/resume" class="footer-link">Resume</a>
-      <a href="/classic" class="footer-link">Classic</a>
-      <a href="https://github.com/bz2116" class="footer-link" target="_blank" rel="noopener">GitHub</a>
-      <a href="mailto:bzy1621@outlook.com" class="footer-link">Email</a>
+  <section class="section split">
+    <div class="section-heading">
+      <p class="eyebrow">Selected Work</p>
+      <h2>Research that can be shipped.</h2>
+      <p>把模型、实验、界面和文档连成完整闭环，是这个主页想呈现的核心能力。</p>
+    </div>
+    <div class="work-grid">
+      {featured.map((project, index) => (
+        <a href={`/projects/${project.slug}`} class={`project-card ${index === 0 ? 'featured' : ''}`}>
+          <div class="project-card-top">
+            <span class="project-kind">{project.type}</span>
+            <span class={`status ${project.status}`}>{project.status}</span>
+          </div>
+          <h3>{project.name}</h3>
+          <p>{project.description}</p>
+          <div class="tag-list">
+            {project.tech.slice(0, 5).map((tech) => <span class="tag">{tech}</span>)}
+          </div>
+        </a>
+      ))}
+    </div>
+  </section>
+
+  <section class="section split">
+    <div class="section-heading">
+      <p class="eyebrow">Trajectory</p>
+      <h2>From software engineering to trustworthy AI security.</h2>
+    </div>
+    <div class="timeline">
+      {profile.education.map((item) => (
+        <article class="panel timeline-item">
+          <time>{item.period}</time>
+          <div>
+            <h3>{item.school}</h3>
+            <p>{item.degree}</p>
+            <p>{item.note}</p>
+          </div>
+        </article>
+      ))}
+      <article class="panel timeline-item">
+        <time>Now</time>
+        <div>
+          <h3>Research interests</h3>
+          <div class="tag-list">
+            {profile.research.map((item) => <span class="tag">{item}</span>)}
+          </div>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <section class="section split">
+    <div class="section-heading">
+      <p class="eyebrow">Highlights</p>
+      <h2>What I want people to remember.</h2>
+    </div>
+    <div class="timeline">
+      {profile.highlights.map((item, index) => (
+        <article class="panel timeline-item">
+          <time>{String(index + 1).padStart(2, '0')}</time>
+          <div>
+            <h3>{item}</h3>
+          </div>
+        </article>
+      ))}
     </div>
   </section>
 </BaseLayout>
