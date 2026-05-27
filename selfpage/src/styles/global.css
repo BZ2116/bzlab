@@ -654,8 +654,17 @@ main {
 
 @media (max-width: 920px) {
   .site-header {
-    grid-template-columns: 1fr auto 1fr;
+    grid-template-columns: auto 1fr;
     gap: 0.5rem;
+  }
+
+  .brand {
+    min-height: 40px;
+  }
+
+  .site-nav {
+    justify-self: end;
+    min-height: 40px;
   }
 
   .hero {
@@ -693,13 +702,18 @@ main {
 
 @media (max-width: 680px) {
   .site-header {
+    grid-template-columns: auto 1fr;
     width: min(100% - 20px, 1180px);
     padding: 10px 0;
   }
 
+  .brand {
+    min-height: 40px;
+  }
+
   .site-nav {
-    width: 100%;
-    justify-content: center;
+    justify-self: end;
+    min-height: 40px;
     gap: 0.15rem;
   }
 
