@@ -1,73 +1,40 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import profile from '../data/profile.json';
-import { projects } from '../data/projects.json';
 import { skills } from '../data/skills.json';
-
-const selected = projects.filter((project) => ['uavp', 'medrnet', 'tobacco-vision', 'synerza', 'note-forge'].includes(project.slug));
 ---
 
-<BaseLayout title="Resume · Bruce Zhao" description={profile.title}>
+<BaseLayout title="技能 · Bruce Zhao" description="技术栈与研究方向">
   <section class="section page-hero">
-    <p class="eyebrow">简历</p>
-    <h1 class="page-title">{profile.nameEn}</h1>
+    <p class="eyebrow">能力</p>
+    <h1 class="page-title">技能与研究方向</h1>
     <p class="lead">{profile.title}</p>
-    <div class="button-row">
-      <a class="button primary" href={`mailto:${profile.contact.email}`}>{profile.contact.email}</a>
-      <a class="button" href={profile.contact.github} target="_blank" rel="noopener noreferrer">github.com/{profile.contact.githubUser}</a>
+  </section>
+
+  <section class="section split">
+    <div class="section-heading">
+      <p class="eyebrow">技术栈</p>
+      <h2>技能。</h2>
+    </div>
+    <div class="resume-list">
+      {skills.map((group) => (
+        <article class="resume-block">
+          <h2>{group.category}</h2>
+          <div class="tag-list">
+            {group.items.map((item) => <span class="tag">{item}</span>)}
+          </div>
+        </article>
+      ))}
     </div>
   </section>
 
   <section class="section split">
     <div class="section-heading">
-      <p class="eyebrow">个人简介</p>
-      <p>{profile.bio}</p>
+      <p class="eyebrow">方向</p>
+      <h2>研究兴趣。</h2>
     </div>
     <div class="resume-list">
       <article class="resume-block">
-        <h2>教育经历</h2>
-        {profile.education.map((item) => (
-          <div class="resume-row">
-            <time>{item.period}</time>
-            <div>
-              <h3>{item.school}</h3>
-              <p>{item.degree}</p>
-              <p>{item.note}</p>
-            </div>
-          </div>
-        ))}
-      </article>
-
-      <article class="resume-block">
-        <h2>代表项目</h2>
-        {selected.map((project) => (
-          <div class="resume-row">
-            <span>{project.status}</span>
-            <div>
-              <h3><a href={`/projects/${project.slug}`}>{project.name}</a></h3>
-              <p>{project.description}</p>
-              <div class="tag-list" style="margin-top: .7rem;">
-                {project.tech.slice(0, 5).map((item) => <span class="tag">{item}</span>)}
-              </div>
-            </div>
-          </div>
-        ))}
-      </article>
-
-      <article class="resume-block">
-        <h2>技能</h2>
-        {skills.map((group) => (
-          <div class="resume-row">
-            <span>{group.category}</span>
-            <div class="tag-list">
-              {group.items.map((item) => <span class="tag">{item}</span>)}
-            </div>
-          </div>
-        ))}
-      </article>
-
-      <article class="resume-block">
-        <h2>研究兴趣</h2>
         <div class="tag-list">
           {profile.research.map((item) => <span class="tag">{item}</span>)}
         </div>
@@ -75,14 +42,3 @@ const selected = projects.filter((project) => ['uavp', 'medrnet', 'tobacco-visio
     </div>
   </section>
 </BaseLayout>
-
-<style>
-  @media print {
-    :global(.site-header),
-    :global(.site-footer),
-    :global(.grain),
-    :global(body::before) {
-      display: none !important;
-    }
-  }
-</style>
