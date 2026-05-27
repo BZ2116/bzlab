@@ -101,7 +101,7 @@ main {
   display: inline-flex;
   align-items: center;
   gap: 0.6rem;
-  padding: 0 0.85rem 0 0.45rem;
+  padding: 0 1rem 0 0.5rem;
   text-decoration: none;
   font-family: var(--font-mono);
   font-size: 0.78rem;
@@ -126,11 +126,11 @@ main {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  padding: 0 0.85rem;
+  padding: 0 0.65rem;
   border-radius: 999px;
   text-decoration: none;
   font-family: var(--font-mono);
-  font-size: 0.74rem;
+  font-size: 0.72rem;
   color: var(--muted);
   transition: background 180ms ease, color 180ms ease, transform 180ms ease;
 }
