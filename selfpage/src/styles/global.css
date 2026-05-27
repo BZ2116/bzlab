@@ -77,19 +77,19 @@ main {
   top: 0;
   z-index: 20;
   display: grid;
-  grid-template-columns: auto 1fr auto;
+  grid-template-columns: minmax(210px, 1fr) auto minmax(170px, 1fr);
   align-items: center;
-  gap: 1rem;
+  gap: 0.75rem;
   width: min(1180px, calc(100% - 32px));
   margin: 0 auto;
-  padding: 18px 0;
+  padding: 14px 0;
   backdrop-filter: blur(18px);
 }
 
 .brand,
 .site-nav,
-.header-contact {
-  height: 44px;
+.header-actions {
+  min-height: 48px;
   border: 1px solid var(--line);
   background: rgba(248, 250, 247, 0.72);
   box-shadow: 0 12px 35px rgba(23, 32, 28, 0.07);
@@ -101,17 +101,42 @@ main {
   display: inline-flex;
   align-items: center;
   gap: 0.6rem;
-  padding: 0 1rem 0 0.5rem;
+  min-width: 0;
+  padding: 0.38rem 1rem 0.38rem 0.48rem;
   text-decoration: none;
   font-family: var(--font-mono);
-  font-size: 0.78rem;
   font-weight: 600;
 }
 
 .brand img {
-  width: 34px;
-  height: 34px;
+  flex: 0 0 auto;
+  width: 36px;
+  height: 36px;
   border-radius: 50%;
+}
+
+.brand-text {
+  display: grid;
+  min-width: 0;
+  line-height: 1.1;
+}
+
+.brand-name,
+.brand-subtitle {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.brand-name {
+  font-size: 0.8rem;
+  color: var(--ink);
+}
+
+.brand-subtitle {
+  margin-top: 0.12rem;
+  color: var(--muted);
+  font-size: 0.68rem;
 }
 
 .site-nav {
@@ -119,18 +144,20 @@ main {
   align-items: center;
   gap: 3px;
   padding: 3px;
+  justify-content: center;
 }
 
 .site-nav a {
-  height: 100%;
+  min-height: 38px;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  padding: 0 0.65rem;
+  padding: 0 1.25rem;
   border-radius: 999px;
   text-decoration: none;
   font-family: var(--font-mono);
   font-size: 0.72rem;
+  font-weight: 600;
   color: var(--muted);
   transition: background 180ms ease, color 180ms ease, transform 180ms ease;
 }
@@ -141,20 +168,32 @@ main {
   color: var(--paper-2);
 }
 
-.header-contact {
+.header-actions {
   justify-self: end;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.3rem;
+  padding: 3px;
+}
+
+.header-link {
+  min-height: 38px;
   display: inline-flex;
   align-items: center;
   justify-content: center;
   padding: 0 0.85rem;
+  border-radius: 999px;
   text-decoration: none;
   font-family: var(--font-mono);
   font-size: 0.74rem;
+  font-weight: 600;
   color: var(--muted);
   transition: background 180ms ease, color 180ms ease, transform 180ms ease;
 }
 
-.header-contact:hover {
+.header-link:hover,
+.header-link.primary {
   background: var(--ink);
   color: var(--paper-2);
 }
@@ -665,7 +704,23 @@ main {
 
 @media (max-width: 920px) {
   .site-header {
+    grid-template-columns: 1fr auto;
     gap: 0.5rem;
+  }
+
+  .site-nav {
+    grid-column: 1 / -1;
+    justify-self: stretch;
+    order: 3;
+  }
+
+  .site-nav a {
+    flex: 1 1 0;
+    padding: 0 0.9rem;
+  }
+
+  .header-actions {
+    min-width: 0;
   }
 
   .hero {
@@ -703,21 +758,46 @@ main {
 
 @media (max-width: 680px) {
   .site-header {
+    grid-template-columns: minmax(0, 1fr) auto;
     width: min(100% - 20px, 1180px);
     padding: 10px 0;
     gap: 0.5rem;
   }
 
-  .header-contact {
-    display: none;
+  .brand {
+    width: auto;
+    justify-self: start;
+    min-height: 46px;
+    padding-right: 0.8rem;
+  }
+
+  .brand img {
+    width: 34px;
+    height: 34px;
+  }
+
+  .brand-name {
+    font-size: 0.76rem;
+  }
+
+  .brand-subtitle {
+    font-size: 0.64rem;
+  }
+
+  .site-nav {
+    grid-column: auto;
+    order: initial;
+    width: auto;
+    justify-self: end;
   }
 
   .site-nav a {
-    padding: 0 0.6rem;
+    min-height: 36px;
+    padding: 0 0.62rem;
     font-size: 0.68rem;
   }
 
-  .header-contact {
+  .header-actions {
     display: none;
   }
 
@@ -852,5 +932,20 @@ main {
     flex-direction: column;
     gap: 0.5rem;
     padding: 1rem 0 1.5rem;
+  }
+}
+
+@media (max-width: 360px) {
+  .brand-name {
+    display: none;
+  }
+
+  .brand-subtitle {
+    margin-top: 0;
+    font-size: 0.7rem;
+  }
+
+  .site-nav a {
+    padding: 0 0.5rem;
   }
 }
