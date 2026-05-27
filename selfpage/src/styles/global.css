@@ -124,11 +124,12 @@ main {
 
 .site-nav a,
 .header-contact {
-  min-height: 34px;
+  min-height: 44px;
   display: inline-flex;
+  padding: .35rem;
   align-items: center;
   justify-content: center;
-  padding: 0 0.85rem;
+
   border-radius: 999px;
   text-decoration: none;
   font-family: var(--font-mono);
@@ -654,17 +655,18 @@ main {
 
 @media (max-width: 920px) {
   .site-header {
-    grid-template-columns: auto 1fr;
+    grid-template-columns: auto 1fr auto;
     gap: 0.5rem;
   }
 
-  .brand {
+  .brand,
+  .site-nav,
+  .header-contact {
     min-height: 40px;
   }
 
   .site-nav {
     justify-self: end;
-    min-height: 40px;
   }
 
   .hero {
