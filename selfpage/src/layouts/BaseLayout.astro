@@ -13,10 +13,9 @@ const {
 } = Astro.props;
 
 const links = [
-  { href: '/', label: 'Home' },
-  { href: '/projects', label: 'Projects' },
-  { href: '/resume', label: 'Resume' },
-  { href: '/classic', label: 'Archive' },
+  { href: '/', label: '首页' },
+  { href: '/projects', label: '项目' },
+  { href: '/resume', label: '简历' },
 ];
 
 const currentPath = Astro.url.pathname;
@@ -53,7 +52,7 @@ const currentPath = Astro.url.pathname;
           );
         })}
       </nav>
-      <a class="header-contact" href={`mailto:${profile.contact.email}`}>Email</a>
+      <a class="header-contact" href={`mailto:${profile.contact.email}`}>联系我</a>
     </header>
     <main>
       <slot />
@@ -61,7 +60,7 @@ const currentPath = Astro.url.pathname;
     <footer class="site-footer">
       <div>
         <strong>{profile.nameEn}</strong>
-        <span>Computer Vision · Multimodal AI · Cybersecurity</span>
+        <span>计算机视觉 · 多模态 AI · 网络安全</span>
       </div>
       <span>BZ Lab v3.0 · 2026</span>
     </footer>

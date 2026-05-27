@@ -1,69 +1,130 @@
 {
   "projects": [
     {
-      "slug": "uavp",
-      "id": "uavp",
-      "name": "UAVP",
-      "fullName": "Uncertainty-Aware Visual Prompting",
-      "type": "research",
-      "description": "面向低光缺陷图像的视觉提示与结构化报告生成研究。项目将 YOLO 检测结果、置信度与缺陷面积融合成 CUS 复合评分，再用语义提示控制 Qwen2.5-VL 的推理语气与输出结构，实现从缺陷图像到 JSON 报告的端到端生成。",
-      "tech": ["Python", "PyTorch", "YOLO", "Qwen2.5-VL", "OpenCV"],
-      "github": "https://github.com/bz2116/uavp",
+      "slug": "synerza",
+      "name": "Synerza",
+      "fullName": "Synerza：面向小红书内容创作者的 AI 智能运营平台",
+      "type": "application",
       "status": "active",
+      "description": "面向小红书内容创作者的 AI 智能运营平台，提供从账号规划、内容生成、素材采集、个性优化到运营分析的全链路服务，重点围绕创作者运营流程中的素材获取、知识组织和内容辅助决策进行支持。",
+      "tech": ["数据采集", "数据清洗", "RAG"],
+      "github": "",
+      "image": "/img/projects/10.png",
+      "images": ["/img/projects/10.png", "/img/projects/15.png"],
       "features": [
-        "设计 CUS 复合评分，融合检测置信度与缺陷面积",
-        "构建 YOLO 到 Qwen2.5-VL 的级联推理流程",
-        "通过语义提示约束视觉语言模型的报告格式",
-        "面向低光环境输出可解析的结构化 JSON 诊断结果"
+        "账号规划辅助",
+        "内容生成支持",
+        "素材采集与管理",
+        "个性化内容优化",
+        "运营分析闭环"
       ],
       "contributions": [
-        "提出 UAVP 方法并实现核心评分算法",
-        "搭建低光缺陷数据处理、检测、推理和报告生成管线",
-        "完成模型实验、可视化分析和毕业设计系统集成"
+        "负责数据采集流程设计与实现，支撑素材和内容数据接入",
+        "负责数据清洗与结构化处理，提升后续检索和生成模块的数据可用性",
+        "参与 RAG 模块建设，围绕内容创作场景实现检索增强支持"
       ],
       "metrics": [
-        { "label": "场景", "value": "低光缺陷" },
-        { "label": "基座模型", "value": "7B VLM" },
-        { "label": "输出", "value": "JSON 报告" }
+        { "label": "定位", "value": "AI 运营平台" },
+        { "label": "技术", "value": "RAG" },
+        { "label": "角色", "value": "数据+RAG 负责人" }
+      ]
+    },
+    {
+      "slug": "uavp",
+      "name": "UAVP",
+      "fullName": "Uncertainty-Aware Vision Prompting for Low-Light Surface Defect Multimodal Analysis",
+      "type": "research",
+      "status": "completed",
+      "description": "面向低光照工业表面缺陷分析场景，构建由 YOLO11n 缺陷检测与 Qwen2.5-VL-7B-Instruct 视觉语言模型组成的轻量级多模态分析流程，通过复合不确定性评分将检测置信度、缺陷区域信息转化为动态视觉提示，提升低光缺陷结构化报告的准确性与一致性。",
+      "tech": ["Python", "PyTorch", "YOLO11n", "Qwen2.5-VL", "VLM", "Prompt Engineering"],
+      "github": "https://github.com/BZ2116/UAVP",
+      "image": "",
+      "features": [
+        "低光表面缺陷多模态分析",
+        "YOLO11n 缺陷定位与类别识别",
+        "复合不确定性评分 CUS",
+        "不确定性感知动态提示词构建",
+        "结构化 JSON 缺陷报告生成"
+      ],
+      "contributions": [
+        "设计 YOLO 检测结果到 VLM 分析报告的端到端工程流程",
+        "构建 CUS 评分机制，将检测置信度与缺陷面积占比转化为语言级提示约束",
+        "完成 Baseline、BBox Prompt 与 UAVP 的对比实验和结构化评估"
+      ],
+      "metrics": [
+        { "label": "Defect_Type_Acc", "value": "90.7%" },
+        { "label": "Severity_Acc", "value": "86.2%" },
+        { "label": "Combined_Acc", "value": "81.5%" }
       ]
     },
     {
       "slug": "medrnet",
-      "id": "medrnet",
       "name": "MeDRNet",
-      "fullName": "Knowledge-Augmented Multi-model Framework for Robust Medical Language Understanding",
+      "fullName": "面向医学语言理解的知识增强多模型框架",
       "type": "research",
-      "description": "面向医学语言理解的知识增强多模型框架。项目通过多模型融合、医学知识增强和鲁棒训练策略提升医学 NLP 任务表现，关注复杂医学文本中的语义理解与可靠预测。",
-      "tech": ["Python", "PyTorch", "Transformers", "NLP"],
-      "github": "https://link.springer.com/chapter/10.1007/978-981-95-7081-2_22",
       "status": "published",
+      "description": "面向医学语言理解任务，构建知识增强的多模型框架，通过多模型融合、医学知识增强与鲁棒训练策略提升复杂医学文本中的语义理解能力和可靠预测表现。",
+      "tech": ["Medical NLP", "Multi-model Fusion", "Knowledge Enhancement", "Robust Training"],
+      "github": "https://link.springer.com/chapter/10.1007/978-981-95-7081-2_22",
+      "image": "/img/projects/13.png",
+      "images": ["/img/projects/13.png", "/img/projects/14.png"],
       "features": [
-        "融合多个模型视角，提升医学文本理解稳定性",
-        "引入知识增强策略，补充领域语义信息",
-        "覆盖训练、评估、消融实验与论文撰写流程",
-        "发表于 Springer 相关会议论文集"
+        "医学语言理解",
+        "多模型融合",
+        "医学知识增强",
+        "鲁棒训练策略",
+        "复杂医学文本可靠预测"
       ],
       "contributions": [
-        "参与框架设计与实验实现",
+        "第一作者，参与框架设计与实验实现",
         "完成医学 NLP 任务上的训练与评估",
-        "整理实验结果并参与论文写作"
+        "整理实验结果并完成论文写作"
       ],
       "metrics": [
-        { "label": "发表", "value": "Springer" },
+        { "label": "论文状态", "value": "CCF-C 已发表" },
         { "label": "角色", "value": "第一作者" },
         { "label": "领域", "value": "Medical NLP" }
       ]
     },
     {
+      "slug": "tobacco-vision",
+      "name": "烟草视觉分析系统",
+      "fullName": "基于深度学习的烟草数据分析系统",
+      "type": "application",
+      "status": "active",
+      "description": "面向烟草产品视觉识别与分析任务，围绕图像增强、图像分割和跨设备部署构建深度学习系统，通过结合 GANs 的结构感知自适应增强、多尺度上下文与注意力机制的 FCN 分割模型，提升复杂烟草包装场景下的自动化识别与分类能力。",
+      "tech": ["Python", "PyTorch", "GANs", "FCN", "Attention", "Transfer Learning", "Few-shot Learning"],
+      "github": "",
+      "image": "/img/projects/4.png",
+      "images": ["/img/projects/4.png"],
+      "features": [
+        "结构感知的自适应图像增强",
+        "复杂烟草包装形式分割",
+        "多尺度上下文信息建模",
+        "注意力机制增强边界捕捉",
+        "跨设备兼容的统一应用部署框架"
+      ],
+      "contributions": [
+        "作为主要负责人，完成烟草视觉任务整体方案设计与系统推进",
+        "深入应用 PyTorch 完成复杂烟草包装分割模型训练与调优",
+        "通过定制化训练策略提升模型对复杂边界和多尺度特征的捕捉能力"
+      ],
+      "metrics": [
+        { "label": "任务", "value": "增强+分割" },
+        { "label": "技术", "value": "GANs+FCN" },
+        { "label": "角色", "value": "主要负责人" }
+      ]
+    },
+    {
       "slug": "note-forge",
-      "id": "note-forge",
-      "name": "NoteForge",
+      "name": "Note Forge",
       "fullName": "AI Learning Materials Organizer",
       "type": "application",
-      "description": "面向个人学习和科研材料管理的 AI Agent。系统支持上传 PDF、TXT、Markdown、DOCX 等资料，自动生成阅读卡片、项目关联分析、论文写作素材和后续任务清单。",
-      "tech": ["React", "FastAPI", "LangChain", "ChromaDB", "Python"],
-      "github": "https://github.com/bz2116/note-forge",
       "status": "active",
+      "description": "面向个人学习和科研材料管理的 AI Agent。系统支持上传 PDF、TXT、Markdown、DOCX 等资料，基于 RAG 自动生成阅读卡片、项目关联分析、论文写作素材和后续任务清单。",
+      "tech": ["React", "FastAPI", "LangChain", "ChromaDB", "Python"],
+      "github": "https://github.com/BZ2116/note-forge",
+      "image": "",
       "features": [
         "多格式文件上传、解析与知识切片",
         "基于 RAG 的科研阅读卡片生成",
@@ -82,57 +143,117 @@
       ]
     },
     {
-      "slug": "book-exchange",
-      "id": "book-exchange",
-      "name": "校园二手书",
-      "fullName": "Campus Book Exchange Platform",
+      "slug": "campus-books",
+      "name": "Campus Books",
+      "fullName": "校园二手书交易平台",
       "type": "application",
-      "description": "校园二手书交易平台，支持书籍发布、搜索、预约和线下交易，并结合用户偏好提供书籍推荐。项目重点在于完整交易流程、后端数据建模和推荐逻辑落地。",
-      "tech": ["Vue.js", "Node.js", "MongoDB", "Redis"],
-      "github": "https://github.com/bz2116/book-exchange",
       "status": "completed",
+      "description": "面向校园二手书交易场景，构建支持书籍发布、搜索、预约和线下交易的 Web 平台，并结合用户偏好提供书籍推荐，重点实现完整交易流程、后端数据建模与推荐逻辑落地。",
+      "tech": ["React", "Vite", "Express.js", "Prisma", "PostgreSQL", "JWT"],
+      "github": "https://github.com/BZ2116/campus-books",
+      "image": "/img/projects/11.png",
+      "images": ["/img/projects/11.png", "/img/projects/12.png"],
       "features": [
-        "书籍发布、搜索、预约和交易流程",
-        "基于偏好的推荐逻辑",
-        "MongoDB 数据建模",
-        "Redis 缓存提升查询效率"
+        "书籍发布与管理",
+        "书籍搜索与筛选",
+        "预约与线下交易流程",
+        "基于用户偏好的书籍推荐",
+        "后端数据建模与接口设计"
       ],
       "contributions": [
-        "设计全栈架构并实现核心交易流程",
-        "实现推荐模块和书籍管理模块",
-        "完成数据库建模与缓存优化"
+        "完成校园二手书交易业务流程设计与核心功能实现",
+        "参与后端数据模型设计、接口开发与推荐逻辑落地"
       ],
       "metrics": [
         { "label": "类型", "value": "全栈应用" },
-        { "label": "数据库", "value": "MongoDB" },
-        { "label": "缓存", "value": "Redis" }
+        { "label": "数据库", "value": "PostgreSQL" },
+        { "label": "认证", "value": "JWT" }
       ]
     },
     {
-      "slug": "pose-detection",
-      "id": "pose-detection",
-      "name": "姿态检测",
-      "fullName": "Human Pose Detection System",
-      "type": "research",
-      "description": "基于深度学习的人体姿态识别系统，可进行图片与视频流中的关键点检测，适用于运动分析、人机交互和轻量级视觉理解场景。",
-      "tech": ["Python", "OpenCV", "MediaPipe", "TensorFlow"],
-      "github": "https://github.com/bz2116/pose-detection",
+      "slug": "pose-recognition",
+      "name": "姿态识别系统",
+      "fullName": "基于深度学习的人体姿态识别系统",
+      "type": "application",
       "status": "completed",
+      "description": "面向运动分析、人机交互和轻量级视觉理解场景，构建人体姿态识别系统，可对图片与视频流中的人体关键点进行检测，并支持基础姿态分析与可视化展示。",
+      "tech": ["Python", "MediaPipe", "BlazePose", "OpenCV", "NumPy"],
+      "github": "",
+      "image": "/img/projects/8.png",
+      "images": ["/img/projects/8.png"],
       "features": [
-        "实时人体关键点检测",
-        "支持图片与视频流输入",
-        "输出姿态可视化结果",
-        "适合轻量化部署和演示"
+        "图片人体关键点检测",
+        "视频流人体关键点检测",
+        "姿态角度计算与评估",
+        "运动分析与动作反馈",
+        "轻量级视觉理解场景适配"
       ],
       "contributions": [
-        "基于 MediaPipe 完成关键点检测实现",
-        "构建视频流实时处理与可视化逻辑",
-        "优化推理流程以满足演示场景"
+        "实现图片、MP4 视频与摄像头输入下的人体关键点检测流程",
+        "基于关键点进行角度计算、姿态评估、动作计数与视频可视化"
       ],
       "metrics": [
-        { "label": "关键点", "value": "17+" },
-        { "label": "输入", "value": "Image / Video" },
-        { "label": "框架", "value": "MediaPipe" }
+        { "label": "输入", "value": "图片/视频/摄像头" },
+        { "label": "技术", "value": "BlazePose" },
+        { "label": "输出", "value": "关键点+可视化" }
+      ]
+    },
+    {
+      "slug": "transport-gov",
+      "name": "交通政务平台",
+      "fullName": "重庆市某区县级交通政务平台数字化项目",
+      "type": "application",
+      "status": "completed",
+      "description": "面向区县级交通政务业务场景，负责地图导航与网约车服务板块的前端开发、功能测试与自动化测试，涉及高德地图 API 集成、多源数据融合、车辆调度与订单流程等核心功能，重点保障系统稳定性与用户体验。",
+      "tech": ["高德地图 API", "Postman", "JMeter", "前端开发", "自动化测试", "多源数据融合"],
+      "github": "",
+      "image": "/img/projects/1.png",
+      "images": ["/img/projects/1.png", "/img/projects/2.png", "/img/projects/3.png"],
+      "features": [
+        "地图导航与网约车服务板块",
+        "高德地图 API 集成",
+        "车辆调度与订单流程测试",
+        "核心接口功能与性能测试",
+        "高并发压力测试"
+      ],
+      "contributions": [
+        "负责地图导航与网约车服务板块前端开发与功能测试",
+        "参与需求评审和风险评估，设计并执行 100+ 条测试用例",
+        "使用 Postman/JMeter 对核心接口进行功能、性能与压力测试"
+      ],
+      "metrics": [
+        { "label": "测试用例", "value": "100+" },
+        { "label": "压力测试", "value": "1000+ QPS" },
+        { "label": "角色", "value": "前端+测试负责人" }
+      ]
+    },
+    {
+      "slug": "hongyan-h5",
+      "name": "红岩招生 H5",
+      "fullName": "校级技术组织红岩网校招生 H5 项目",
+      "type": "application",
+      "status": "completed",
+      "description": "面向校级技术组织招生宣传场景，采用 React + TypeScript 实现动态数据可视化与复杂交互功能，并承担功能测试、多端兼容性测试与交互体验优化，支撑项目上线后的稳定访问与传播。",
+      "tech": ["React", "TypeScript", "数据可视化", "前端测试", "多端兼容性测试"],
+      "github": "",
+      "image": "/img/projects/5.png",
+      "images": ["/img/projects/5.png", "/img/projects/6.png", "/img/projects/7.png"],
+      "features": [
+        "动态数据可视化",
+        "复杂前端交互",
+        "数据渲染与数据埋点测试",
+        "多端设备兼容性适配",
+        "加载动画与错误处理优化"
+      ],
+      "contributions": [
+        "担任前端核心开发及测试负责人，参与从代码实现到质量保障的全流程",
+        "独立设计并执行 80+ 条测试用例，覆盖数据渲染、埋点和交互逻辑",
+        "从用户视角发现并优化 5+ 处交互体验问题"
+      ],
+      "metrics": [
+        { "label": "上线一周 PV", "value": "1000+" },
+        { "label": "测试用例", "value": "80+" },
+        { "label": "体验优化", "value": "5+" }
       ]
     }
   ]

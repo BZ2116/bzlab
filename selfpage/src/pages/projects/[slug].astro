@@ -10,33 +10,44 @@ export function getStaticPaths() {
 }
 
 const { project } = Astro.props;
+const images = project.images || (project.image ? [project.image] : []);
 ---
 
 <BaseLayout title={`${project.name} · Bruce Zhao`} description={project.description}>
   <section class="section page-hero compact">
-    <a class="button" href="/projects">Back to Projects</a>
+    <a class="button" href="/projects">返回项目列表</a>
     <p class="eyebrow" style="margin-top: 2rem;">{project.type} / {project.status}</p>
     <h1 class="page-title">{project.name}</h1>
     <p class="lead">{project.fullName}</p>
   </section>
 
+  {images.length > 0 && (
+    <section class="section project-gallery">
+      {images.map((src) => (
+        <img src={src} alt={`${project.name} 项目截图`} loading="lazy" />
+      ))}
+    </section>
+  )}
+
   <section class="section project-page-grid">
     <article class="detail-card">
-      <h2>Overview</h2>
+      <h2>概述</h2>
       <p class="lead" style="margin-top: 0;">{project.description}</p>
       <div class="button-row">
-        <a class="button primary" href={project.github} target="_blank" rel="noopener noreferrer">
-          {project.github.includes('springer.com') ? 'View Paper' : 'View Repository'}
-        </a>
+        {project.github && (
+          <a class="button primary" href={project.github} target="_blank" rel="noopener noreferrer">
+            {project.github.includes('springer.com') ? '查看论文' : '查看仓库'}
+          </a>
+        )}
       </div>
     </article>
 
     <aside class="detail-card">
-      <h2>Stack</h2>
+      <h2>技术栈</h2>
       <div class="tag-list">
         {project.tech.map((item) => <span class="tag">{item}</span>)}
       </div>
-      <h2 style="margin-top: 1.5rem;">Metrics</h2>
+      <h2 style="margin-top: 1.5rem;">关键指标</h2>
       <div class="metric-list">
         {project.metrics.map((metric) => (
           <div>
@@ -48,14 +59,14 @@ const { project } = Astro.props;
     </aside>
 
     <section class="detail-card">
-      <h2>Key Features</h2>
+      <h2>核心特性</h2>
       <ul class="clean-list">
         {project.features.map((item) => <li>{item}</li>)}
       </ul>
     </section>
 
     <section class="detail-card">
-      <h2>Contributions</h2>
+      <h2>个人贡献</h2>
       <ul class="clean-list">
         {project.contributions.map((item) => <li>{item}</li>)}
       </ul>

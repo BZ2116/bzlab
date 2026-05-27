@@ -3,50 +3,52 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import profile from '../data/profile.json';
 import { projects } from '../data/projects.json';
 
-const featured = projects.slice(0, 3);
+const featured = projects.filter((p) => ['synerza', 'uavp', 'medrnet'].includes(p.slug));
 ---
 
 <BaseLayout title="Bruce Zhao · BZ Lab v3.0" description={profile.bio}>
   <section class="section hero">
-    <div>
-      <p class="eyebrow">Personal research homepage / v3.0</p>
-      <h1 class="hero-title">{profile.nameEn}<br />{profile.name}</h1>
-      <p class="lead">{profile.signature}</p>
+    <div class="hero-content">
+      <div class="hero-top">
+        <div class="hero-intro">
+          <p class="eyebrow">个人研究主页</p>
+          <h1 class="hero-title">{profile.nameEn}<br />{profile.name}</h1>
+        </div>
+        <aside class="panel hero-visual">
+          <img src="/img/BZ/26_1寸.jpg" alt="Bruce Zhao portrait" />
+          <div class="visual-caption">
+            {profile.console.focus}<br />
+            {profile.console.work}
+          </div>
+        </aside>
+      </div>
       <p class="lead">{profile.bio}</p>
       <div class="button-row">
-        <a class="button primary" href="/projects">View Projects</a>
-        <a class="button" href="/resume">Open Resume</a>
+        <a class="button primary" href="/projects">查看项目</a>
+        <a class="button" href="/resume">查看简历</a>
         <a class="button" href={profile.contact.github} target="_blank" rel="noopener noreferrer">GitHub</a>
       </div>
       <div class="hero-meta" aria-label="Profile summary">
         <div>
-          <span>Current</span>
-          <strong>Software Engineering</strong>
+          <span>当前</span>
+          <strong>软件工程本科</strong>
         </div>
         <div>
-          <span>Research</span>
-          <strong>Vision + VLM</strong>
+          <span>研究</span>
+          <strong>CV + VLM</strong>
         </div>
         <div>
-          <span>Next</span>
-          <strong>Cybersecurity</strong>
+          <span>下一阶段</span>
+          <strong>网络安全</strong>
         </div>
       </div>
     </div>
-    <aside class="panel hero-visual">
-      <img src="/img/BZ/BZ11.jpg" alt="Bruce Zhao portrait and campus life" />
-      <div class="visual-caption">
-        {profile.console.focus}<br />
-        {profile.console.work}
-      </div>
-    </aside>
   </section>
 
   <section class="section split">
     <div class="section-heading">
-      <p class="eyebrow">Selected Work</p>
-      <h2>Research that can be shipped.</h2>
-      <p>把模型、实验、界面和文档连成完整闭环，是这个主页想呈现的核心能力。</p>
+      <p class="eyebrow">代表项目</p>
+      <h2>一些研究。</h2>
     </div>
     <div class="work-grid">
       {featured.map((project, index) => (
@@ -67,8 +69,8 @@ const featured = projects.slice(0, 3);
 
   <section class="section split">
     <div class="section-heading">
-      <p class="eyebrow">Trajectory</p>
-      <h2>From software engineering to trustworthy AI security.</h2>
+      <p class="eyebrow">成长轨迹</p>
+      <h2>从软件到大模型。</h2>
     </div>
     <div class="timeline">
       {profile.education.map((item) => (
@@ -82,9 +84,9 @@ const featured = projects.slice(0, 3);
         </article>
       ))}
       <article class="panel timeline-item">
-        <time>Now</time>
+        <time>当前</time>
         <div>
-          <h3>Research interests</h3>
+          <h3>研究兴趣</h3>
           <div class="tag-list">
             {profile.research.map((item) => <span class="tag">{item}</span>)}
           </div>
@@ -95,8 +97,8 @@ const featured = projects.slice(0, 3);
 
   <section class="section split">
     <div class="section-heading">
-      <p class="eyebrow">Highlights</p>
-      <h2>What I want people to remember.</h2>
+      <p class="eyebrow">亮点</p>
+      <h2>代表性成果。</h2>
     </div>
     <div class="timeline">
       {profile.highlights.map((item, index) => (

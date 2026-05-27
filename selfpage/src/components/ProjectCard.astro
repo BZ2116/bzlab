@@ -7,16 +7,28 @@ interface Props {
   description: string;
   tech: string[];
   status: string;
+  image?: string;
   featured?: boolean;
 }
 
-const { slug, name, fullName, type, description, tech, status, featured = false } = Astro.props;
+const { slug, name, fullName, type, description, tech, status, image, featured = false } = Astro.props;
+
+const statusLabel: Record<string, string> = {
+  active: '进行中',
+  published: '已发表',
+  completed: '已完成',
+};
 ---
 
 <a href={`/projects/${slug}`} class={`project-card ${featured ? 'featured' : ''}`}>
+  {image && (
+    <div class="project-card-img">
+      <img src={image} alt={`${name} 项目截图`} loading="lazy" />
+    </div>
+  )}
   <div class="project-card-top">
     <span class="project-kind">{type}</span>
-    <span class={`status ${status}`}>{status}</span>
+    <span class={`status ${status}`}>{statusLabel[status] || status}</span>
   </div>
   <h3>{name}</h3>
   <p>{fullName}</p>

@@ -1,28 +1,28 @@
 {
   "skills": [
     {
-      "category": "Programming",
-      "items": ["Python", "TypeScript", "JavaScript", "C++", "Go"]
+      "category": "编程语言",
+      "items": ["Python", "TypeScript", "JavaScript", "C / C++"]
     },
     {
       "category": "AI / ML",
-      "items": ["PyTorch", "TensorFlow", "OpenCV", "Transformers", "MediaPipe", "LangChain"]
+      "items": ["PyTorch", "YOLO", "Qwen2.5-VL", "Transformers", "OpenCV", "MediaPipe", "GANs", "FCN"]
     },
     {
-      "category": "Frontend",
-      "items": ["Astro", "React", "Vue.js", "TailwindCSS", "Vite"]
+      "category": "前端",
+      "items": ["React", "Vue.js", "TypeScript", "TailwindCSS", "H5", "数据可视化"]
     },
     {
-      "category": "Backend / Infra",
-      "items": ["FastAPI", "Node.js", "MongoDB", "Redis", "Docker", "GitHub Actions"]
+      "category": "后端 / 基础设施",
+      "items": ["FastAPI", "Node.js", "MongoDB", "Redis", "Docker"]
     },
     {
-      "category": "Research",
-      "items": ["Computer Vision", "Object Detection", "Multimodal Learning", "Low-light Vision", "Medical NLP"]
+      "category": "研究",
+      "items": ["计算机视觉", "图像分割", "图像增强", "目标检测", "Medical NLP", "多模态学习", "Prompt Engineering"]
     },
     {
-      "category": "Security",
-      "items": ["CTF", "Web Security", "Binary Basics", "Linux", "Reverse Engineering"]
+      "category": "测试",
+      "items": ["Postman", "JMeter", "接口测试", "性能测试", "压力测试", "测试用例设计"]
     }
   ]
 }

@@ -8,6 +8,9 @@ node_modules/
 .env
 .env.*
 
+# build output
+dist/
+
 # misc
 .DS_Store
 npm-debug.log*

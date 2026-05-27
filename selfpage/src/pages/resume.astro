@@ -4,12 +4,12 @@ import profile from '../data/profile.json';
 import { projects } from '../data/projects.json';
 import { skills } from '../data/skills.json';
 
-const selected = projects.filter((project) => ['uavp', 'medrnet', 'note-forge'].includes(project.slug));
+const selected = projects.filter((project) => ['uavp', 'medrnet', 'tobacco-vision', 'synerza', 'note-forge'].includes(project.slug));
 ---
 
 <BaseLayout title="Resume · Bruce Zhao" description={profile.title}>
   <section class="section page-hero">
-    <p class="eyebrow">Resume</p>
+    <p class="eyebrow">简历</p>
     <h1 class="page-title">{profile.nameEn}</h1>
     <p class="lead">{profile.title}</p>
     <div class="button-row">
@@ -20,13 +20,12 @@ const selected = projects.filter((project) => ['uavp', 'medrnet', 'note-forge'].
 
   <section class="section split">
     <div class="section-heading">
-      <p class="eyebrow">Profile</p>
-      <h2>AI engineering with a research backbone.</h2>
+      <p class="eyebrow">个人简介</p>
       <p>{profile.bio}</p>
     </div>
     <div class="resume-list">
       <article class="resume-block">
-        <h2>Education</h2>
+        <h2>教育经历</h2>
         {profile.education.map((item) => (
           <div class="resume-row">
             <time>{item.period}</time>
@@ -40,7 +39,7 @@ const selected = projects.filter((project) => ['uavp', 'medrnet', 'note-forge'].
       </article>
 
       <article class="resume-block">
-        <h2>Selected Projects</h2>
+        <h2>代表项目</h2>
         {selected.map((project) => (
           <div class="resume-row">
             <span>{project.status}</span>
@@ -56,7 +55,7 @@ const selected = projects.filter((project) => ['uavp', 'medrnet', 'note-forge'].
       </article>
 
       <article class="resume-block">
-        <h2>Skills</h2>
+        <h2>技能</h2>
         {skills.map((group) => (
           <div class="resume-row">
             <span>{group.category}</span>
@@ -68,7 +67,7 @@ const selected = projects.filter((project) => ['uavp', 'medrnet', 'note-forge'].
       </article>
 
       <article class="resume-block">
-        <h2>Research Interests</h2>
+        <h2>研究兴趣</h2>
         <div class="tag-list">
           {profile.research.map((item) => <span class="tag">{item}</span>)}
         </div>

@@ -1,38 +1,35 @@
 {
   "name": "赵耀",
   "nameEn": "Bruce Zhao",
-  "title": "Software Engineering Student · Computer Vision Researcher · Cybersecurity Graduate Student",
-  "location": "Chongqing / Hefei, China",
-  "signature": "Building reliable AI systems across perception, reasoning, and security.",
+  "title": "软件工程本科生 · 计算机视觉研究者 · 网络安全硕士研究生",
   "education": [
     {
       "period": "2022 - 2026",
       "school": "重庆邮电大学",
-      "degree": "软件工程 · 本科",
-      "note": "聚焦计算机视觉、深度学习与全栈工程实践"
+      "degree": "软件工程（英语+软件）· 本科",
+      "note": "专业排名前 5%（2/58），学业一等奖学金，CET-6 533，聚焦计算机视觉与大模型应用"
     },
     {
       "period": "2026 -",
       "school": "中国科学技术大学",
-      "degree": "网络空间安全 · 硕士研究生",
-      "note": "继续探索 AI 系统安全、攻防实践与可信智能"
+      "degree": "电子信息 — 网络安全 · 硕士研究生",
+      "note": "推免入学，研究方向：内容安全算法、大模型安全、多模态 NLP、AI 与网络安全交叉"
     }
   ],
-  "research": ["低光视觉感知", "目标检测", "多模态推理", "医学语言理解", "网络安全", "CTF"],
+  "research": ["内容安全算法", "大模型安全", "多模态 NLP", "AI 安全", "计算机视觉"],
   "contact": {
-    "email": "bzy1621@outlook.com",
-    "github": "https://github.com/bz2116",
-    "githubUser": "bz2116"
+    "email": "zhaoyao_2116@163.com",
+    "github": "https://github.com/BZ2116",
+    "githubUser": "BZ2116"
   },
-  "bio": "你好，我是赵耀（Bruce Zhao）。本科阶段在重庆邮电大学软件工程专业学习，主要围绕计算机视觉、多模态模型和 AI 工程化做研究与项目实践；研究生阶段将前往中国科学技术大学攻读网络空间安全方向。我喜欢把研究问题做成可运行、可复现、可展示的系统，也持续参与 CTF 和安全方向的学习。",
+  "bio": "赵耀，重庆邮电大学软件工程专业本科生，已推免至中国科学技术大学攻读电子信息—网络安全硕士研究生。本科排名前 5%（2/58），研究兴趣包括计算机视觉、大模型安全、内容安全算法与多模态 NLP。曾参与低光表面缺陷多模态分析、医学 NLP、图像分割、AI 工具和 Web 平台开发等项目。",
   "highlights": [
-    "提出 UAVP 低光缺陷分析流程，将检测置信度、缺陷面积和视觉语言模型推理连接成结构化报告生成链路。",
-    "作为第一作者参与 MeDRNet 医学语言理解研究，论文发表于 Springer 相关会议论文集。",
-    "长期维护个人 AI 工具、科研材料整理工具和全栈应用项目，关注从模型到产品的完整闭环。"
+    "维护 Note Forge、Synerza 等 AI 工具和全栈应用，覆盖 RAG、数据采集、前端开发等环节。",
+    "作为第一作者参与 MeDRNet 医学语言理解研究，论文发表于 Springer CCF-C 会议论文集。",
+    "设计UAVP低光缺陷分析流程，将检测置信度、缺陷面积和视觉语言模型推理连接成结构化报告生成链路。"
   ],
   "console": {
-    "focus": "Low-light Vision / Multimodal Reasoning / Security",
-    "track": "CV · VLM · Defect Diagnosis · CTF",
+    "focus": "计算机视觉 / 多模态推理 / 网络安全",
     "work": "UAVP · MeDRNet · NoteForge"
   }
 }
