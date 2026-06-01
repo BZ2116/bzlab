@@ -30,6 +30,35 @@
       ]
     },
     {
+      "slug": "wonder",
+      "name": "文答 Wonder",
+      "fullName": "文答 Wonder — 面向科研的 AI 文献分析工具",
+      "type": "application",
+      "status": "active",
+      "description": "一个帮助研究者高效阅读和管理学术文献的桌面应用。上传一篇论文，AI 自动生成结构化阅读卡片、与你研究方向的关联分析、可直接引用的写作素材、以及后续任务清单——整个过程流式输出，几秒出结果。",
+      "tech": ["React", "TypeScript", "Hono", "SQLite", "FastAPI", "ChromaDB", "Electron", "RAG"],
+      "github": "https://github.com/BZ2116/wonder",
+      "image": "",
+      "features": [
+        "多 Agent 协作分析：文献解析、项目关联、写作辅助、任务规划四个 Agent 串联",
+        "RAG 知识库：文档自动分块入库，两层向量检索（摘要层+内容层），支持溯源问答",
+        "文献发现与引用网络：搜索学术论文、构建引用关系图谱",
+        "批量矩阵对比：多篇文献横向比较方法、数据集、指标等维度",
+        "多 Provider 支持：适配 Anthropic、OpenAI 兼容、MiniMax 等 LLM 服务"
+      ],
+      "contributions": [
+        "设计多 Agent 协作架构，实现文献解析→项目关联→写作辅助→任务规划的串联流程",
+        "构建 RAG 知识库，支持文档自动分块入库与两层向量检索",
+        "实现文献发现与引用网络、批量矩阵对比等核心功能",
+        "完成 Electron 桌面端封装与多 LLM Provider 适配"
+      ],
+      "metrics": [
+        { "label": "Agent", "value": "4 个串联" },
+        { "label": "检索", "value": "两层向量" },
+        { "label": "定位", "value": "科研文献分析" }
+      ]
+    },
+    {
       "slug": "uavp",
       "name": "UAVP",
       "fullName": "Uncertainty-Aware Vision Prompting for Low-Light Surface Defect Multimodal Analysis",
