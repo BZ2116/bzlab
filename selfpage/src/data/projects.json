@@ -6,7 +6,7 @@
       "fullName": "文答 Wonder — 面向科研的 AI 文献分析工具",
       "type": "application",
       "status": "active",
-      "description": "一个帮助研究者高效阅读和管理学术文献的桌面应用。上传一篇论文，AI 自动生成结构化阅读卡片、与你研究方向的关联分析、可直接引用的写作素材、以及后续任务清单——整个过程流式输出，几秒出结果。",
+      "description": "面向科研场景的 AI 文献分析桌面应用。支持上传论文与技术文档，通过多 Agent 协作自动生成阅读卡片、关联分析、写作素材和任务清单，并提供 RAG 知识库、文献发现、引用网络等辅助工具。",
       "tech": ["React", "TypeScript", "Hono", "SQLite", "FastAPI", "ChromaDB", "Electron", "RAG"],
       "github": "https://github.com/BZ2116/wonder",
       "image": "/img/projects/15.png",
