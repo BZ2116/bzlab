@@ -38,7 +38,8 @@
       "description": "一个帮助研究者高效阅读和管理学术文献的桌面应用。上传一篇论文，AI 自动生成结构化阅读卡片、与你研究方向的关联分析、可直接引用的写作素材、以及后续任务清单——整个过程流式输出，几秒出结果。",
       "tech": ["React", "TypeScript", "Hono", "SQLite", "FastAPI", "ChromaDB", "Electron", "RAG"],
       "github": "https://github.com/BZ2116/wonder",
-      "image": "",
+      "image": "/img/projects/16.png",
+      "images": ["/img/projects/16.png"],
       "features": [
         "多 Agent 协作分析：文献解析、项目关联、写作辅助、任务规划四个 Agent 串联",
         "RAG 知识库：文档自动分块入库，两层向量检索（摘要层+内容层），支持溯源问答",
@@ -67,7 +68,8 @@
       "description": "面向低光照工业表面缺陷分析场景，构建由 YOLO11n 缺陷检测与 Qwen2.5-VL-7B-Instruct 视觉语言模型组成的轻量级多模态分析流程，通过复合不确定性评分将检测置信度、缺陷区域信息转化为动态视觉提示，提升低光缺陷结构化报告的准确性与一致性。",
       "tech": ["Python", "PyTorch", "YOLO11n", "Qwen2.5-VL", "VLM", "Prompt Engineering"],
       "github": "https://github.com/BZ2116/UAVP",
-      "image": "",
+      "image": "/img/projects/17.png",
+      "images": ["/img/projects/17.png", "/img/projects/18.png"],
       "features": [
         "低光表面缺陷多模态分析",
         "YOLO11n 缺陷定位与类别识别",
@@ -142,33 +144,6 @@
         { "label": "任务", "value": "增强+分割" },
         { "label": "技术", "value": "GANs+FCN" },
         { "label": "角色", "value": "主要负责人" }
-      ]
-    },
-    {
-      "slug": "note-forge",
-      "name": "Note Forge",
-      "fullName": "AI Learning Materials Organizer",
-      "type": "application",
-      "status": "active",
-      "description": "面向个人学习和科研材料管理的 AI Agent。系统支持上传 PDF、TXT、Markdown、DOCX 等资料，基于 RAG 自动生成阅读卡片、项目关联分析、论文写作素材和后续任务清单。",
-      "tech": ["React", "FastAPI", "LangChain", "ChromaDB", "Python"],
-      "github": "https://github.com/BZ2116/note-forge",
-      "image": "",
-      "features": [
-        "多格式文件上传、解析与知识切片",
-        "基于 RAG 的科研阅读卡片生成",
-        "项目关联分析与知识图谱式整理",
-        "自动生成后续任务和写作素材"
-      ],
-      "contributions": [
-        "设计 LangChain + ChromaDB 的 RAG 架构",
-        "实现 React 前端与 FastAPI 后端",
-        "构建文档解析、检索和卡片生成流程"
-      ],
-      "metrics": [
-        { "label": "格式", "value": "4+" },
-        { "label": "架构", "value": "RAG" },
-        { "label": "定位", "value": "AI Agent" }
       ]
     },
     {
