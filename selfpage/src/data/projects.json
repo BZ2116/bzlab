@@ -9,8 +9,8 @@
       "description": "一个帮助研究者高效阅读和管理学术文献的桌面应用。上传一篇论文，AI 自动生成结构化阅读卡片、与你研究方向的关联分析、可直接引用的写作素材、以及后续任务清单——整个过程流式输出，几秒出结果。",
       "tech": ["React", "TypeScript", "Hono", "SQLite", "FastAPI", "ChromaDB", "Electron", "RAG"],
       "github": "https://github.com/BZ2116/wonder",
-      "image": "/img/projects/16.png",
-      "images": ["/img/projects/16.png", "/img/projects/17.png"],
+      "image": "/img/projects/15.png",
+      "images": ["/img/projects/15.png", "/img/projects/16.png"],
       "features": [
         "多 Agent 协作分析：文献解析、项目关联、写作辅助、任务规划四个 Agent 串联",
         "RAG 知识库：文档自动分块入库，两层向量检索（摘要层+内容层），支持溯源问答",
@@ -39,8 +39,8 @@
       "description": "面向低光照工业表面缺陷分析场景，构建由 YOLO11n 缺陷检测与 Qwen2.5-VL-7B-Instruct 视觉语言模型组成的轻量级多模态分析流程，通过复合不确定性评分将检测置信度、缺陷区域信息转化为动态视觉提示，提升低光缺陷结构化报告的准确性与一致性。",
       "tech": ["Python", "PyTorch", "YOLO11n", "Qwen2.5-VL", "VLM", "Prompt Engineering"],
       "github": "https://github.com/BZ2116/UAVP",
-      "image": "/img/projects/18.png",
-      "images": ["/img/projects/18.png", "/img/projects/19.png"],
+      "image": "/img/projects/17.png",
+      "images": ["/img/projects/17.png", "/img/projects/18.png"],
       "features": [
         "低光表面缺陷多模态分析",
         "YOLO11n 缺陷定位与类别识别",
