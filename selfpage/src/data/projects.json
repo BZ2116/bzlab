@@ -1,35 +1,6 @@
 {
   "projects": [
     {
-      "slug": "synerza",
-      "name": "Synerza",
-      "fullName": "Synerza：面向小红书内容创作者的 AI 智能运营平台",
-      "type": "application",
-      "status": "active",
-      "description": "面向小红书内容创作者的 AI 智能运营平台，提供从账号规划、内容生成、素材采集、个性优化到运营分析的全链路服务，重点围绕创作者运营流程中的素材获取、知识组织和内容辅助决策进行支持。",
-      "tech": ["数据采集", "数据清洗", "RAG"],
-      "github": "",
-      "image": "/img/projects/10.png",
-      "images": ["/img/projects/10.png", "/img/projects/15.png"],
-      "features": [
-        "账号规划辅助",
-        "内容生成支持",
-        "素材采集与管理",
-        "个性化内容优化",
-        "运营分析闭环"
-      ],
-      "contributions": [
-        "负责数据采集流程设计与实现，支撑素材和内容数据接入",
-        "负责数据清洗与结构化处理，提升后续检索和生成模块的数据可用性",
-        "参与 RAG 模块建设，围绕内容创作场景实现检索增强支持"
-      ],
-      "metrics": [
-        { "label": "定位", "value": "AI 运营平台" },
-        { "label": "技术", "value": "RAG" },
-        { "label": "角色", "value": "数据+RAG 负责人" }
-      ]
-    },
-    {
       "slug": "wonder",
       "name": "文答 Wonder",
       "fullName": "文答 Wonder — 面向科研的 AI 文献分析工具",
